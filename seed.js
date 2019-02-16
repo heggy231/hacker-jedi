@@ -45,7 +45,7 @@ for(let i = 0; i <  apprenticeships.length; i++) {
 }
 
 
-Apprenticeship.find({}, (err, apprenticeships) => {
+Apprenticeship.find ({}, (err, apprenticeships) => {
     if (err) {
         console.log(err);
         return;
@@ -53,7 +53,6 @@ Apprenticeship.find({}, (err, apprenticeships) => {
     console.log(apprenticeships, 'Apprenticeships Saved!!!!!!');
 })
 
+console.log('*');
 
-
-
-
+// [] Heggy todo: add data inside here:
