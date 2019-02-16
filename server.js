@@ -24,6 +24,9 @@ const db = require('./models');
 /**********
  * ROUTES *
  **********/
+app.get('/', (req, res) => {
+  res.sendFile('views/index.html' , { root : __dirname});
+});
 
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
