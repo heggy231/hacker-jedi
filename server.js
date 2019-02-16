@@ -25,7 +25,7 @@ const db = require('./models');
  * ROUTES *
  **********/
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  // res.send('Hello World!');
   res.sendFile('views/index.html' , { root : __dirname});
 });
 
