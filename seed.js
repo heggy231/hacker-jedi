@@ -1,3 +1,4 @@
+
 const db = require('./models');
 const User = require('./models/user');
 const Apprenticeship = require('./models/apprenticeship');
@@ -59,3 +60,4 @@ Apprenticeship.find({}, (err, apprenticeships) => {
 console.log('*');
 
 // [] Heggy todo: add data inside here:
+
