@@ -26,7 +26,7 @@ const db = require('./models');
  **********/
 app.get('/', (req, res) => {
   res.send('Hello World!');
-  // res.sendFile('views/index.html' , { root : __dirname});
+  res.sendFile('views/index.html' , { root : __dirname});
 });
 
 // Serve static files from the `/public` directory:
