@@ -20,6 +20,9 @@ for(let i = 0; i <  apprenticeships.length; i++) {
                    user_created: ''};
 
     User.create(newUser, (err, userCreated)=> {
+         if (err) {
+           return console.log(err);
+         }
 
         apprenticeship['user_created'] = userCreated._id;
 
@@ -45,13 +48,13 @@ for(let i = 0; i <  apprenticeships.length; i++) {
 }
 
 
-Apprenticeship.find ({}, (err, apprenticeships) => {
+Apprenticeship.find({}, (err, apprenticeships) => {
     if (err) {
         console.log(err);
         return;
     }
     console.log(apprenticeships, 'Apprenticeships Saved!!!!!!');
-})
+});
 
 console.log('*');
 
