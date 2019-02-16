@@ -27,3 +27,7 @@ const db = require('./models');
 
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
+
+app.listen(process.env.PORT || 3000, ()=> {
+  console.log('listening on port 3000');
+});
