@@ -39,7 +39,7 @@ for(let i = 0; i <  apprenticeships.length; i++) {
 
                     if (err) {
 
-                        return onsole.log(err);
+                        return console.log(err);
 
                     }
                 });
