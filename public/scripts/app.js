@@ -9,7 +9,10 @@ $( document ).ready(function() {
       url: "./api/apprenticeships",
     }).then(function(apprenData) {
       console.log(apprenData);
-      $("#appren-data").append(`${apprenData.company} ${apprenData.city} ${apprenData.description} `);
+
+      for(var i = 0; i < apprenData.length; i++){
+        $("#appren-data").append(`${apprenData[i].company} ${apprenData[i].city} ${apprenData[i].description}`);
+      }
     });
   });
 });
