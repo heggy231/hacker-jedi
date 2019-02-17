@@ -38,10 +38,19 @@ app.get('/api', (req, res) => {
     endpoints: [
       {method: "GET", path: "/api", description: "Here is list all the api endpoints for hacker-jedi app"},
       {method: "GET", path: "/api/apprenticeships", description: "This lists all the apprenticeships."},
-
     ],
   });
 });
+
+// get all the list of apprenticeships
+app.get('/', (req, res) => {
+  // testing 
+  res.json({
+    test: "hello world",
+  });
+})
+
+  // res.sendFile('views/index.html', { });
 
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
