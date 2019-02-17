@@ -1,12 +1,29 @@
-// require express and other modules
-const express = require('express');
-// generate a new express app and call it 'app'
-const app = express();
+// server.js
+// SERVER-SIDE JAVASCRIPT
 
-// parse incoming urlencoded form data
-// and populate the req.body object
+/////////////////////////////
+//  SETUP and CONFIGURATION
+/////////////////////////////
+
+// require express in our app
+const express = require('express');
 const bodyParser = require('body-parser');
+
+// generate a new express app and call it 'app'
+let app = express();
+
+// serve static files in public
+app.use(express.static('public'));
+
+// body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+/************
+ * DATABASE *
+ ************/
+// connect to db models
+let db = require('./models');
 
 // allow cross origin requests (optional)
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
@@ -16,15 +33,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-/************
- * DATABASE *
- ************/
-// connect to db models
-const db = require('./models');
+
 
 /**********
  * ROUTES *
  **********/
+// define a root route: localhost:3000/
 app.get('/', (req, res) => {
   // res.send('Hello World!');
   res.sendFile('views/index.html' , { root : __dirname});
