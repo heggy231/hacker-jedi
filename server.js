@@ -133,7 +133,7 @@ app.post('/api/add', (req, res) => {
 
 
 app.delete('/api/add/:id', function (req, res) {
-    console.log('deleted selfcare is ', req.params);
+    console.log('deleted apprenticeship is ', req.params);
    db.Apprenticeship.findOneAndDelete
     ( {_id: req.params.id}, 
     (err, deletedApprenticeship) => {
