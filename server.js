@@ -1,5 +1,6 @@
 // require express and other modules
 const express = require('express');
+// generate a new express app and call it 'app'
 const app = express();
 
 // parse incoming urlencoded form data
@@ -18,7 +19,7 @@ app.use(function(req, res, next) {
 /************
  * DATABASE *
  ************/
-
+// connect to db models
 const db = require('./models');
 
 /**********
@@ -45,6 +46,7 @@ app.get('/api', (req, res) => {
 // get all the list of apprenticeships
 app.get('/api/apprenticeships', (req, res) => {
   console.log(db);
+  
   db.Apprenticeship.find((err, foundApprenticeship) => {
     if (err) {console.log(err)}
     res.json(foundApprenticeship)

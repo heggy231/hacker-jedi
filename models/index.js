@@ -9,3 +9,7 @@
     db.once('open', function() {
         console.log('db is now open.');
       });
+
+    module.exports = {
+      Apprenticeship : require("./apprenticeship.js")
+    }
