@@ -44,11 +44,16 @@ app.get('/api', (req, res) => {
 
 // get all the list of apprenticeships
 app.get('/api/apprenticeships', (req, res) => {
-  // testing 
-  res.json({
-    test: "hello world",
+  db.Apprenticeship.find((err, foundApprenticeship) => {
+    if (err) {console.log(err)}
+    res.json(foundApprenticeship)
   });
+  // testing 
+  // res.json({
+  //   test: "hello world",
+  // });
 })
+
 
   // res.sendFile('views/index.html', { });
 
