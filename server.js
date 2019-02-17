@@ -29,6 +29,13 @@ app.get('/', (req, res) => {
   res.sendFile('views/index.html' , { root : __dirname});
 });
 
+// REST is in JSON format: JSON API EndPoints
+app.get('/api', (req, res) => {
+  message: "This is Hacker-Jedi api! More info in following readME file.",
+  documentationUrl: "https://github.com/heggy231/hacker-jedi/blob/master/README.md",
+  baseUrl: "https://evening-forest-40933.herokuapp.com/",
+});
+
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
 

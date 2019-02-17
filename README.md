@@ -16,3 +16,6 @@ cat server.js // does heroku see my latest change? check if change is there
 exit // every time I make changes go to heroku shell command exit out.
 heroku run bash // cmd for running bash hero command bash
 heroku open // open the heroku chrome web browser which is my heroku server is running from
+
+- hacker jedi heroku heggy
+https://evening-forest-40933.herokuapp.com/
