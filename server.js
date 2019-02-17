@@ -72,6 +72,7 @@ app.get('/api/apprenticeships', (req, res) => {
 })
 
 
+
   // res.sendFile('views/index.html', { });
 
 // Serve static files from the `/public` directory:
