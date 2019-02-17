@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-const Schema = mongoose.Schema;
-
-const ApprenticeshipSchema = new Schema({
+let ApprenticeshipSchema = new Schema({
    company: String,
    city: String,
    url: String,
@@ -10,6 +9,6 @@ const ApprenticeshipSchema = new Schema({
    user_created: { type: Schema.ObjectId, ref: 'User' }
 });
 
-const Apprenticeship = mongoose.model('Apprenticeship', ApprenticeshipSchema );
+let Apprenticeship = mongoose.model('Apprenticeship', ApprenticeshipSchema );
 
 module.exports  = Apprenticeship;
