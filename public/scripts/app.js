@@ -5,9 +5,11 @@ $( document ).ready(function() {
     // alert("The text has been changed.");
     // call my api
     $.ajax({
-      url: "./api/apprenticeships"
+      dataType: "json",
+      url: "./api/apprenticeships",
     }).then(function(apprenData) {
       console.log(apprenData);
+      $("#appren-data").append(`${apprenData.company} ${apprenData.city} ${apprenData.description} `);
     });
   });
 });
