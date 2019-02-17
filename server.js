@@ -43,7 +43,7 @@ app.get('/api', (req, res) => {
 });
 
 // get all the list of apprenticeships
-app.get('/', (req, res) => {
+app.get('/api/apprenticeships', (req, res) => {
   // testing 
   res.json({
     test: "hello world",
