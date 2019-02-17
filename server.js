@@ -39,9 +39,9 @@ app.get('/', function homepage(req, res) {
 });
 
 
-// app.get('/api/add', function addPage(req, res) {
-//     res.sendFile(__dirname + '/views/add.html');
-//   });
+app.get('/add', function addPage(req, res) {
+    res.sendFile(__dirname + '/views/add.html');
+  });
 
 
 /*
