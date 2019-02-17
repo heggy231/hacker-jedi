@@ -31,9 +31,16 @@ app.get('/', (req, res) => {
 
 // REST is in JSON format: JSON API EndPoints
 app.get('/api', (req, res) => {
-  message: "This is Hacker-Jedi api! More info in following readME file.",
-  documentationUrl: "https://github.com/heggy231/hacker-jedi/blob/master/README.md",
-  baseUrl: "https://evening-forest-40933.herokuapp.com/",
+  res.json({
+    message: "This is Hacker-Jedi api! More info in following readME file.",
+    documentationUrl: "https://github.com/heggy231/hacker-jedi/blob/master/README.md",
+    baseUrl: "https://evening-forest-40933.herokuapp.com/",
+    endpoints: [
+      {method: "GET", path: "/api", description: "Here is list all the api endpoints for hacker-jedi app"},
+      {method: "GET", path: "/api/apprenticeships", description: "This lists all the apprenticeships."},
+
+    ],
+  });
 });
 
 // Serve static files from the `/public` directory:
