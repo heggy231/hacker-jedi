@@ -96,23 +96,37 @@ app.get('/api/add', (req, res) => {
 
 
 app.post('/api/add', (req, res) => {
-    //create new selfcare item
-    let newAppr = new db.Apprenticeship({
-      //this gets from the form on index.html ... how to get from a form on another page?
-      company: req.body.company,
-      city: req.body.city,
-      url: req.body.url,
-      description: req.body.description,
-   //userCreated?
-    });
-      newAppr.save(function(err, apprenticeship){
+    db.Apprenticeship(req.body).save(function(err, apprenticeship){
           if (err) {
             console.log("error: " + err);
           }
-          console.log("created " + newAppr);
-          res.json(newAppr);
+          console.log("created " + apprenticeship);
+          res.json(apprenticeship);
         });
   })
+
+
+//   app.post('/profile/add', (req, res) => {
+//     //create new selfcare item
+//     let user = new db.User({
+//       //this gets from the form on index.html ... how to get from a form on another page?
+//       firstName: req.body.firstName,
+//       city: req.body.city,
+//       url: req.body.url,
+//       description: req.body.description,
+//    //userCreated?
+//     });
+//       newAppr.save(function(err, apprenticeship){
+//           if (err) {
+//             console.log("error: " + err);
+//           }
+//           console.log("created " + newAppr);
+//           res.json(newAppr);
+//         });
+//   })
+
+
+
 
   app.put('/api/add/:id', function(req,res){
     console.log('updated apprenticeships: ', req.params);

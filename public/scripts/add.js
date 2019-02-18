@@ -21,8 +21,7 @@ const handleSuccess = function(json) {
         Description: ${apprList[i].description} 
         <button class="delete" type="button" data-id=${json[i]._id}> Delete </button>  
         <button class="edit" type="button"> Edit </button> </li>`
-        )
-    }
+        )}
     console.log(apprTarget);
 }
 
@@ -45,8 +44,6 @@ const handleSuccess = function(json) {
       success: addSuccess,
       error: handleError
   });
-
-
 });
 
 
@@ -61,8 +58,6 @@ const handleSuccess = function(json) {
       error:  handleError
     });
   });
-
-
 
 });  // end of Jquery
 

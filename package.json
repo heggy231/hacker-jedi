@@ -19,6 +19,7 @@
   "homepage": "https://github.com/heggy231/hacker-jedi#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "mongod": "^2.0.0",
     "mongoose": "^5.4.13"
   }
 }
