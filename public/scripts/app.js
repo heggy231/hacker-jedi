@@ -29,12 +29,12 @@ $( document ).ready(function() {
               <button id="${apprenData[i]._id}" type="submit" class="btn btn-default editApprenticeship">Edit</button>
              </td>
           </form></tr>`);
-
-
       }        
       $(".editApprenticeship").click(function(e){
         e.preventDefault();
         alert(e);
+        debugger;
+        $("#").html();
       });
     });
   });
