@@ -53,6 +53,8 @@ app.get('/api', (req, res) => {
     endpoints: [
       {method: "GET", path: "/api", description: "Here is list all the api endpoints for hacker-jedi app"},
       {method: "GET", path: "/api/apprenticeships", description: "This lists all the apprenticeships."},
+      // create new endpoint for post
+      {method: "POST", path: "/api/apprenticeships", description: "This add a new apprenticeship."},
     ],
   });
 });
@@ -71,7 +73,11 @@ app.get('/api/apprenticeships', (req, res) => {
   // });
 })
 
-
+// Creat new apprenticeship
+app.post('/api/apprenticeships', (req, res) => {
+  // create new apprenticeship with form data ('req.body')
+  // let newApprenticeship = new db.Apprenticeship
+}); 
 
   // res.sendFile('views/index.html', { });
 

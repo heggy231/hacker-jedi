@@ -15,4 +15,19 @@ $( document ).ready(function() {
       }
     });
   });
+
+  $('#newApprenForm').on('submit', function(e) {
+    e.preventDefault();
+    // serialized which creates a string
+    console.log('new apprenticeship serialized', $(this).serializeArray());
+    $.ajax({
+      method: 'POST',
+      url: '/api/',
+      data: $(this).serializeArray(),
+      success: newBookSuccess,
+      error: newBookError
+    });
+  });
+
+
 });
