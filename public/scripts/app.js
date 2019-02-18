@@ -59,9 +59,9 @@ $( document ).ready(function() {
             button.html(`Edit`);
             console.log('new apprenticeship serialized', $(this).serializeArray());
             $.ajax({ // use PUT for editing
-              method: 'PUT',
+              method: 'POST',
               // tell db exactly which one I am updating e-target of its id
-              url: '/api/apprenticeships/'+ e.target.id,
+              url: '/api/apprenticeships/'+ e.target.id + "?_method=put",
               // this points to form
               data: $(this).serializeArray(),
               success: function() {
