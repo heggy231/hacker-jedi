@@ -97,7 +97,7 @@ app.post('/api/apprenticeships', (req, res) => {
         createApprenticeshipWithUser(newApprenticeship, newUser, res);
       });
     } else {
-      createApprenticeshipWithUser(newApprenticeship, newUser, res);
+      createApprenticeshipWithUser(newApprenticeship, user, res);
     }
   }); 
   // save new Apprentice
