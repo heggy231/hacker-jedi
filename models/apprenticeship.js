@@ -9,6 +9,7 @@ let ApprenticeshipSchema = new Schema({
    user_created: { type: Schema.ObjectId, ref: 'User' }
 });
 
-let Apprenticeship = mongoose.model('Apprent', ApprenticeshipSchema );
+// name of the database
+let Apprenticeship = mongoose.model('Apprenticeship', ApprenticeshipSchema );
 
 module.exports  = Apprenticeship;
