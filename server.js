@@ -76,6 +76,7 @@ app.get('/api/apprenticeships', (req, res) => {
 // Creat new apprenticeship
 app.post('/api/apprenticeships', (req, res) => {
   // create new apprenticeship with form data ('req.body')
+  console.log("body is ", req.body);
   let newApprenticeship = new db.Apprenticeship({
     company: req.body.company,
     location: req.body.appLocation,
