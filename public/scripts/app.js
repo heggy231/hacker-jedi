@@ -58,17 +58,25 @@ $( document ).ready(function() {
             // toggle button back to edit for next time around
             button.html(`Edit`);
             console.log('new apprenticeship serialized', $(this).serializeArray());
+            debugger;
+            let newData = {
+              company: company[0].firstChild.value,
+              location: location[0].firstChild.value,
+              link: link[0].firstChild.value,
+              description: description[0].firstChild.value
+            }
+
             $.ajax({ // use PUT for editing
               method: 'POST',
               // tell db exactly which one I am updating e-target of its id
               url: '/api/apprenticeships/'+ e.target.id,// + "?_method=put",
               // this points to form
-              data: $(this).serializeArray(),
+              data: newData,
               success: function() {
-                company.html($(this).company);
-                location.html($(this).location);
-                link.html($(this).link);
-                description.html($(this).description);
+                company.html(newData.company);
+                location.html(newData.location);
+                link.html(newData.link);
+                description.html(newData.description);
                 newApprenticeshipSuccess();
               },
               error: newApprenticeshipError,
