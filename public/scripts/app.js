@@ -58,7 +58,7 @@ $( document ).ready(function() {
             // toggle button back to edit for next time around
             button.html(`Edit`);
             console.log('new apprenticeship serialized', $(this).serializeArray());
-            debugger;
+           
             let newData = {
               company: company[0].firstChild.value,
               location: location[0].firstChild.value,
@@ -67,7 +67,7 @@ $( document ).ready(function() {
             }
 
             $.ajax({ // use PUT for editing
-              method: 'POST',
+              method: 'PUT',
               // tell db exactly which one I am updating e-target of its id
               url: '/api/apprenticeships/'+ e.target.id,// + "?_method=put",
               // this points to form
