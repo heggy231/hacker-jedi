@@ -10,43 +10,43 @@ const apprenticeship2 =  {company: 'Clique', city: 'Boston', description: 'xyz'}
 
 const apprenticeship3 =  {company: 'Detroit Labs', city: 'NYC', description: 'xyz'};
 
-let apprenticeships =  [ apprenticeship1, apprenticeship2, apprenticeship3 ];
+const apprenticeships =  [ apprenticeship1, apprenticeship2, apprenticeship3 ];
 
-for(let i = 0; i <  apprenticeships.length; i++) {
-    let apprenticeship = apprenticeships[i];
-    let newUser = {name: 'chike' + i, 
-                   company: 'GA', 
-                   url:'', 
-                   description: '',
-                   user_created: ''};
+// for(let i = 0; i <  apprenticeships.length; i++) {
+//     let apprenticeship = apprenticeships[i];
+//     let newUser = {name: 'chike' + i, 
+//                    company: 'GA', 
+//                    url:'', 
+//                    description: '',
+//                    user_created: ''};
 
-    User.create(newUser, (err, userCreated)=> {
-         if (err) {
-           return console.log(err);
-         }
+//     User.create(newUser, (err, userCreated)=> {
+//          if (err) {
+//            return console.log(err);
+//          }
 
-        apprenticeship['user_created'] = userCreated._id;
+//         apprenticeship['user_created'] = userCreated._id;
 
-        userCreated.save((err, newUser)=>{
+//         userCreated.save((err, newUser)=>{
 
-            if (err){
+//             if (err){
 
-                return console.log(err);
-            }
-            Apprenticeship.create(apprenticeship, (err, newAppr) => { 
+//                 return console.log(err);
+//             }
+//             Apprenticeship.create(apprenticeship, (err, newAppr) => { 
                             
-                newAppr.save((err)=>{
+//                 newAppr.save((err)=>{
 
-                    if (err) {
+//                     if (err) {
 
-                        return console.log(err);
+//                         return console.log(err);
 
-                    }
-                });
-            });
-        });
-    });
-}
+//                     }
+//                 });
+//             });
+//         });
+//     });
+// }
 
 
 Apprenticeship.find({}, (err, apprenticeships) => {
