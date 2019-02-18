@@ -32,9 +32,9 @@ $( document ).ready(function() {
       }        
       $(".editApprenticeship").click(function(e){
         e.preventDefault();
-        alert(e);
-        debugger;
-        $("#").html();
+        
+        let company = $("#" + e.target.id + "_company");
+        company.html(`<input type="text" name="company" value="${company.text()}"/>`);
       });
     });
   });
