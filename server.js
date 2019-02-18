@@ -118,6 +118,22 @@ function createApprenticeshipWithUser(apprenticeship, user, res) {
   });
 }
 
+// edit Apprenticeship
+app.put('/api/apprenticeships/:id', (req, res) => {
+  // get apprenticeships id from url params (`req.params`)
+  console.log("apprenticeships edit", req.params);
+  console.log("body is ", req.body);
+  let apprenticeshipsId = req.params.id;
+  // find the index of the apprenticeships we want to edit
+  db.Apprenticeships.findOneAndUpdate({ _id: apprenticeshipId }, req.body, {new: true})
+  .populate('user_created')
+  .exec((err, updatedApprenticeship) => {
+    if (err) {
+      return console.log("update error: " + err);
+    }
+    res.json(updatedApprenticeship);
+  });
+});
 
 // res.sendFile('views/index.html', { });
 
