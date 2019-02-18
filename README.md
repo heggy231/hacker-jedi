@@ -19,3 +19,7 @@ heroku open // open the heroku chrome web browser which is my heroku server is r
 
 - hacker jedi heroku heggy
 https://evening-forest-40933.herokuapp.com/
+
+- try Web Authentication
+https://www.youtube.com/watch?v=i7of02icPyQ
+Randall Degges - Everything You Ever Wanted to Know About Web Authentication in Node
