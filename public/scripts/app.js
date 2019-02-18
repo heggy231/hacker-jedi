@@ -53,8 +53,8 @@ $( document ).ready(function() {
           description.html(`<input type="text" name="description" value="${description.text()}"/>`);
         
           
-          form.on('submit', function(e) {
-            e.preventDefault();
+          form.on('submit', function(e2) {
+            e2.preventDefault();
             // toggle button back to edit for next time around
             button.html(`Edit`);
             console.log('new apprenticeship serialized', $(this).serializeArray());
