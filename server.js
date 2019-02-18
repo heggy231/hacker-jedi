@@ -121,7 +121,7 @@ function createApprenticeshipWithUser(apprenticeship, user, res) {
 }
 
 // edit Apprenticeship
-app.put('/api/apprenticeships/:id', (req, res) => {
+app.post('/api/apprenticeships/:id', (req, res) => {
   // get apprenticeships id from url params (`req.params`)
   console.log("apprenticeships edit", req.params);
   console.log("body is ", req);
