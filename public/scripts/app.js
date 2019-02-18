@@ -11,7 +11,7 @@ $( document ).ready(function() {
       console.log(apprenData);
 
       for(var i = 0; i < apprenData.length; i++){
-        $("#appren-data").append(`${apprenData[i].company} ${apprenData[i].city} ${apprenData[i].description}`);
+        $("#appren-data").append(`${apprenData[i].company} ${apprenData[i].location} ${apprenData[i].link} ${apprenData[i].description}`);
       }
     });
   });
