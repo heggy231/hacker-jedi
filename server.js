@@ -55,6 +55,7 @@ app.get('/api', (req, res) => {
       {method: "GET", path: "/api/apprenticeships", description: "This lists all the apprenticeships."},
       // create new endpoint for post
       {method: "POST", path: "/api/apprenticeships", description: "This add a new apprenticeship."},
+      {method: "PUT", path: "/api/apprenticeships/:id", description: "This add a new apprenticeship."},
     ],
   });
 });
@@ -120,10 +121,10 @@ function createApprenticeshipWithUser(apprenticeship, user, res) {
 }
 
 // edit Apprenticeship
-app.put('/api/apprenticeships/:id', upload, (req, res) => {
+app.put('/api/apprenticeships/:id', (req, res) => {
   // get apprenticeships id from url params (`req.params`)
   console.log("apprenticeships edit", req.params);
-  console.log("body is ", req.body);
+  console.log("body is ", req);
   let apprenticeshipId = req.params.id;
   // find the index of the apprenticeships we want to edit
   db.Apprenticeship.findOneAndUpdate({ _id: apprenticeshipId }, req.body, {new: true})
