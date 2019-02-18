@@ -11,7 +11,7 @@ $( document ).ready(function() {
       console.log(apprenData);
 
       for(var i = 0; i < apprenData.length; i++){
-        $("#appren-data").append(`<tr><form><td>${apprenData[i].company}</td> <td>${apprenData[i].location}</td> <td>${apprenData[i].link}</td> <td>${apprenData[i].description}</td></form><button type="submit" class="btn btn-default">Edit</button></tr>`);
+        $("#appren-data").append(`<tr><form><td>${apprenData[i].company}</td> <td>${apprenData[i].location}</td> <td>${apprenData[i].link}</td> <td>${apprenData[i].description}</td><td><button type="submit" class="btn btn-default">Edit</button></td></form></tr>`);
       }
     });
   });
