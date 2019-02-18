@@ -30,11 +30,12 @@ $( document ).ready(function() {
              </td>
           </form></tr>`);
 
-        $(".editApprenticeship").click(function(e){
-          e.preventDefault();
-          alert(e);
-        });
-      }
+
+      }        
+      $(".editApprenticeship").click(function(e){
+        e.preventDefault();
+        alert(e);
+      });
     });
   });
 
