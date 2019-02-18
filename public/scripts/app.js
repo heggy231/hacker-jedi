@@ -11,7 +11,24 @@ $( document ).ready(function() {
       console.log(apprenData);
 
       for(var i = 0; i < apprenData.length; i++){
-        $("#appren-data").append(`<tr><form><td>${apprenData[i].company}</td> <td>${apprenData[i].location}</td> <td>${apprenData[i].link}</td> <td>${apprenData[i].description}</td><td><button type="submit" class="btn btn-default">Edit</button></td></form></tr>`);
+        $("#appren-data").append(
+          `<tr><form>
+             <td>
+              <div id="${apprenData[i]._id}_company">${apprenData[i].company}</div>
+             </td>
+             <td>
+              <div id="${apprenData[i]._id}_location">${apprenData[i].location}</div>
+             </td> 
+             <td>
+              <div id="${apprenData[i]._id}_link">${apprenData[i].link}</div>
+             </td> 
+             <td>
+              <div id="${apprenData[i]._id}_description">${apprenData[i].description}</div>
+             </td>
+             <td>
+              <button id="${apprenData[i]._id}" type="submit" class="btn btn-default editApprenticeship">Edit</button>
+             </td>
+          </form></tr>`);
       }
     });
   });
