@@ -83,9 +83,43 @@ app.post('/api/apprenticeships', (req, res) => {
     description: req.body.description,
     user_created: null,
   });
+  // find the user from req.body
+  db.User.findOne({email: req.body.email}, (err, user) => {
+    if (err) {
+      return console.log(err);
+    }
+    // if that user doesn't exist yet, create a new one
+    if (user === null) {
+      db.User.create({name: req.body.user, email: req.body.email}, (err, newUser) => {
+        if (err) {
+          return console.log(err);
+        }
+        createApprenticeshipWithUser(newApprenticeship, newUser, res);
+      });
+    } else {
+      createApprenticeshipWithUser(newApprenticeship, newUser, res);
+    }
+  }); 
+  // save new Apprentice
 }); 
 
-  // res.sendFile('views/index.html', { });
+// create Apprenticeship With new User function
+function createApprenticeshipWithUser(apprenticeship, user, res) {
+  // add this user to the apprenticeship
+  apprenticeship.user_created = user;
+  // save new apprenticeship to database
+  apprenticeship.save(function(err, book) {
+    if (err) { 
+      return console.log("save error: " + err)
+    }
+    console.log("saved ", apprenticeship.company);
+    // send back the apprenticeship
+    res.json(apprenticeship);
+  });
+}
+
+
+// res.sendFile('views/index.html', { });
 
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`

@@ -12,4 +12,5 @@ db.once('open', function() {
 // model/index.js must require all files under models since index.js
 module.exports = {
   Apprenticeship : require("./apprenticeship.js"),
+  User: require("./user.js"),
 }
