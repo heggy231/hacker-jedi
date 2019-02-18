@@ -134,7 +134,7 @@ for(let i = 0; i <  apprenticeship_list.length; i++) {
     for (let j = 0; j < users_list.length; j++) {
       // if user email on apprenticship is equal to user_list email
       if (apprenticeship.user_created === users_list[j].email) {
-        user = user_list[j];
+        user = users_list[j];
         // connect them 
       }
     }
@@ -181,15 +181,4 @@ for(let i = 0; i <  apprenticeship_list.length; i++) {
       });
     }
 }
-
-
-Apprenticeship.find({}, (err, apprenticeships) => {
-    if (err) {
-        console.log(err);
-        return;
-    }
-    console.log(apprenticeships, 'Apprenticeships Saved!!!!!!');
-});
-
-console.log('*');
 
