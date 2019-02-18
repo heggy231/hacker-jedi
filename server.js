@@ -125,7 +125,7 @@ app.put('/api/apprenticeships/:id', (req, res) => {
   console.log("body is ", req.body);
   let apprenticeshipsId = req.params.id;
   // find the index of the apprenticeships we want to edit
-  db.Apprenticeships.findOneAndUpdate({ _id: apprenticeshipId }, req.body, {new: true})
+  db.Apprenticeship.findOneAndUpdate({ _id: apprenticeshipId }, req.body, {new: true})
   .populate('user_created')
   .exec((err, updatedApprenticeship) => {
     if (err) {
