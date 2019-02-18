@@ -22,7 +22,7 @@ $( document ).ready(function() {
     console.log('new apprenticeship serialized', $(this).serializeArray());
     $.ajax({
       method: 'POST',
-      url: '/api/',
+      url: '/api/apprenticeships',
       data: $(this).serializeArray(),
       success: newApprenticeshipSuccess,
       error: newApprenticeshipError,
