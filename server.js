@@ -78,8 +78,8 @@ app.post('/api/apprenticeships', (req, res) => {
   // create new apprenticeship with form data ('req.body')
   let newApprenticeship = new db.Apprenticeship({
     company: req.body.company,
-    location: req.body.location,
-    link: req.body.link,
+    location: req.body.appLocation,
+    link: req.body.appLink,
     description: req.body.description,
     user_created: null,
   });
