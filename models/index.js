@@ -6,10 +6,10 @@ const db = mongoose.connection;
 mongoose.connect(process.env.MONGODB_URI  || 'mongodb://localhost/jedi-db', { useNewUrlParser: true });
 
 db.once('open', function() {
-    console.log('db is now open.');
-  });
+  console.log('db is now open.');
+});
 
 // model/index.js must require all files under models since index.js
 module.exports = {
-  Apprenticeship : require("./apprenticeship.js")
+  Apprenticeship : require("./apprenticeship.js"),
 }

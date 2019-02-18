@@ -76,7 +76,13 @@ app.get('/api/apprenticeships', (req, res) => {
 // Creat new apprenticeship
 app.post('/api/apprenticeships', (req, res) => {
   // create new apprenticeship with form data ('req.body')
-  // let newApprenticeship = new db.Apprenticeship
+  let newApprenticeship = new db.Apprenticeship({
+    company: req.body.company,
+    location: req.body.location,
+    link: req.body.link,
+    description: req.body.description,
+    user_created: null,
+  });
 }); 
 
   // res.sendFile('views/index.html', { });
