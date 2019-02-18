@@ -33,8 +33,9 @@ $( document ).ready(function() {
       $(".editApprenticeship").click(function(e){
         e.preventDefault();
         let button = $("#" + e.target.id);
+        let form = $("#" + e.target.id + "_apprenticeshipEditForm");
         if (button.text() === "Save") {
-          button.submit();
+          form.submit();
         // button is edit button 
         } else {
           button.html(`Save`);  // so that I can save it once I am done editing
@@ -51,7 +52,7 @@ $( document ).ready(function() {
           let description = $("#" + e.target.id + "_description");
           description.html(`<input type="text" name="description" value="${description.text()}"/>`);
         
-          let form = $("#" + e.target.id + "_apprenticeshipEditForm");
+          
           form.on('submit', function(e) {
             e.preventDefault();
             // toggle button back to edit for next time around
