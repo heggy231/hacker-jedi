@@ -16,7 +16,7 @@ let app = express();
 app.use(express.static('public'));
 
 // body parser config to accept our datatypes
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
 /************
@@ -124,7 +124,7 @@ function createApprenticeshipWithUser(apprenticeship, user, res) {
 app.post('/api/apprenticeships/:id', (req, res) => {
   // get apprenticeships id from url params (`req.params`)
   console.log("apprenticeships edit", req.params);
-  console.log("body is ", req);
+  console.log("body is ", req.body);
   let apprenticeshipId = req.params.id;
   // find the index of the apprenticeships we want to edit
   db.Apprenticeship.findOneAndUpdate({ _id: apprenticeshipId }, req.body, {new: true})
