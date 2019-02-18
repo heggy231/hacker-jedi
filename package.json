@@ -21,6 +21,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "method-override": "^3.0.0",
-    "mongoose": "^5.4.13"
+    "mongoose": "^5.4.13",
+    "pug": "^2.0.3"
   }
 }
