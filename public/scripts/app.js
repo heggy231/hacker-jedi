@@ -24,10 +24,18 @@ $( document ).ready(function() {
       method: 'POST',
       url: '/api/',
       data: $(this).serializeArray(),
-      success: newBookSuccess,
-      error: newBookError
+      success: newApprenticeshipSuccess,
+      error: newApprenticeshipError,
     });
   });
-
-
 });
+
+function newApprenticeshipSuccess(json) {
+  // clear the form
+  $('#newApprenForm input').val('');
+  alert(json);
+} 
+
+function newApprenticeshipError() {
+  console.log("newApprenticeship error!");
+}
