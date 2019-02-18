@@ -35,6 +35,18 @@ $( document ).ready(function() {
         
         let company = $("#" + e.target.id + "_company");
         company.html(`<input type="text" name="company" value="${company.text()}"/>`);
+
+        let location = $("#" + e.target.id + "_location");
+        location.html(`<input type="text" name="location" value="${location.text()}"/>`);
+
+        let link = $("#" + e.target.id + "_link");
+        link.html(`<input type="text" name="link" value="${link.text()}"/>`);
+
+        let description = $("#" + e.target.id + "_description");
+        description.html(`<input type="text" name="description" value="${description.text()}"/>`);
+
+        let button = $("#" + e.target.id);
+        button.html(`Save`);
       });
     });
   });
