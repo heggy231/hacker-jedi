@@ -43,6 +43,10 @@ app.get('/add', function addPage(req, res) {
     res.sendFile(__dirname + '/views/add.html');
   });
 
+  app.get('/profile', function addPage(req, res) {
+    res.sendFile(__dirname + '/views/profile.html');
+  });
+
 
 /*
  * JSON API Endpoints
@@ -72,7 +76,7 @@ app.get('/api', (req, res) => {
   })
 });
 
-app.get('/profile', (req, res) => {
+app.get('/user', (req, res) => {
 
     db.User.find({}, function (err, user) {
         if (err) {
@@ -92,7 +96,6 @@ app.get('/api/add', (req, res) => {
         res.json(apprenticeship);
       });
 })
-
 
 
 app.post('/api/add', (req, res) => {
@@ -126,9 +129,57 @@ app.post('/api/add', (req, res) => {
 //   })
 
 
+// app.post('/api/add', (req, res ) => {
+//     res.status = 200;
+  
+//     let newUser = {
+//       name: req.body.name,
+//       email: req.body.email,
+//       user_created: ''
+//     }
+  
+//     User.create(newUser, (err, userCreated)=> {
+//       if (err) {
+//         return console.log(err);
+//       }
+  
+//      userCreated.save((err, newUser)=>{
+  
+//         if (err){
+  
+//           return console.log(err);
+  
+//          }
+  
+//         let apprenticeship = {
+//           company: req.body.company,
+//           url: req.body.url,
+//           description: req.body.description
+//          }
+    
+//         apprenticeship['user_created'] = userCreated._id;
+  
+//         Apprenticeship.create(apprenticeship, (err, newAppr) => { 
+                         
+//           newAppr.save((err)=>{
+  
+//             if (err) {
+  
+//                return console.log(err);
+  
+//             } else {
+//               res.json(newAppr);
+//             }
+//           });
+//         });
+//      });
+//     });
+//   });
 
 
-  app.put('/api/add/:id', function(req,res){
+
+  
+app.put('/api/add/:id', function(req,res){
     console.log('updated apprenticeships: ', req.params);
     db.Apprenticeship.findOneAndUpdate(
       { _id: req.params.id},
@@ -141,6 +192,30 @@ app.post('/api/add', (req, res) => {
       res.json(updatedAppr);
     });
   });
+
+
+
+
+//   app.put('/api/add/:id', function(req,res){
+//     console.log('updated apprenticeships: ', req.params);
+
+//     db.Apprenticeship.findOneAndUpdate({ _id: req.params.id})
+
+//     .populate('user_created')
+
+//     .exec(err, apprenticeship) => {
+//         if (err) {
+//             console.log("the error is " + err);
+//           }
+//        apprenticeship.user_created.email = req.body.email;
+//        apprenticeship.company = requ.body.company;
+//        apprenticeship.url = requ.body.url;
+//        apprenticeship.city = req.body.city;
+//        apprenticeship.description = req.body.description;
+
+//        res.json(apprenticeship);
+//     }
+//   });
 
 
 
