@@ -7,13 +7,33 @@
   <!-- Load the Google Platform Library -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <!-- Specify your app's client ID I need to enter my client ID here securely-->
-  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="104817432499-39gk40hrs5sab2pr0ursdf73o44o6g6d.apps.googleusercontent.com">
 
   <title>Signup with Google</title>
 </head>
 <body>
-    <h1>Login using Google Auth</h1>
-    <!-- Add a Google Sign-In button -->
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <h1>Login using Google Auth</h1>
+  <!-- Add a Google Sign-In button -->
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <a href="#" onclick="signOut();">Sign out</a>
+
+  <script>
+    // Get profile information
+    // After you have signed in a user with Google using the default scopes, you can access the user's Google ID, name, profile URL, and email address.
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+  </script>
 </body>
 </html>
