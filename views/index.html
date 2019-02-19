@@ -4,18 +4,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Load the Google Platform Library -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- Specify your app's client ID I need to enter my client ID here securely-->
+  <meta name="google-signin-client_id" content="104817432499-39gk40hrs5sab2pr0ursdf73o44o6g6d.apps.googleusercontent.com">
+  <title>Hacker Jedi</title>
+  <!-- resource: https://www.w3schools.com/bootstrap/bootstrap_get_started.asp MaxCDN provides CDN support for Bootstrap's CSS and JavaScript. You must also include jQuery: -->
+  <!-- STYLESHEETS CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
+  <!-- VENDOR SCRIPTS jQuery library -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+
+  <!-- APPLICATION SCRIPTS -->
+  <script src="/scripts/app.js"></script>
+
+
+ <!-- Siri added these scripts! -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="/scripts/app.js"></script>
-  <title>Hacker Jedi</title>
+  
+
 </head>
 <body>
   <h1>Welcome to Hacker Jedi app</h1>
-  <h2>Login using Google Auth</h2>
-  <a href="./profile"> go to user profile </a>
+  
+  <a href="./profile"> go to user profile </a> -->
+  <!-- add create user plus  -->
+
   <div>
-    <ul id="apprList">
-        
-    </ul>
-  </div>             
+    <div>Do you like add a new apprenticeship?</div>
+      <a href="./createUser.html">Add +</a>
+  </div>
+
+  <h1>Login using Google Auth</h1>
+  <!-- Add a Google Sign-In button -->
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <a href="#" onclick="signOut();">Sign out</a>
+  <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
+  
+  <footer>
+    <p>&copy; 2019 Siri, Chike, Heggy</p>
+
+    <p>
+      ## Credits
+    </p>
+    <!-- <ul id="credits">
+      <li><a href="https://github.com/fvcproductions">FVCproductions</a></li>
+      <li><a href="https://modayil.me">Benjamin Modayil</a></li>
+      <li><a href="https://linkedin.com/in/leilanir">Leilani Raranga</a></li>
+      <li><a href="https://www.coltonhurst.com">Colton Hurst</a></li>
+      <li><a href="https://github.com/jschultz21">Julia Schultz</a></li>
+      <li><a href="https://github.com/ibrittanyhill">Brittany Hill</a></li>
+      <li><a href="https://www.linkedin.com/in/chris-miller-6470751/">Chris Miller</a></li>
+      <li><a href="https://github.com/markarce">Mark Arce</a></li>
+      <li><a href="https://github.com/amyyf">Amy Frieson</a></li>
+    </ul> -->
+  </footer>
+  <script>
+      // Get profile information
+      // After you have signed in a user with Google using the default scopes, you can access the user's Google ID, name, profile URL, and email address.
+      function onSignIn(googleUser) {
+        debugger;
+        console.log('googleUser?: ' + googleUser);
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      }
+  
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+    </script>
+
+<a href="./profile"> go to user profile </a>
+<div>
+  <ul id="apprList">
+      
+  </ul>
+</div>          
+
 </body>
 </html>
