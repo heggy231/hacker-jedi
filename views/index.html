@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- error message on https://stackoverflow.com/questions/32166870/img-src-was-not-explicitly-set-so-default-src-is-used-as-a-fallback -->
-  <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self' http://localhost:3000/createUser">
-  <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self' http://XX.XX.XX.XX:8084/mypp/">
+
   <!-- Load the Google Platform Library -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <!-- Specify your app's client ID I need to enter my client ID here securely-->
@@ -16,7 +14,7 @@
 <body>
   <h1>Welcome to Hacker Jedi app</h1>
   
-  <a href="./profile"> go to user profile </a>
+  <a href="./profile"> go to user profile </a> -->
   <!-- add create user plus  -->
 
   <div>
@@ -28,10 +26,11 @@
   <!-- Add a Google Sign-In button -->
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
   <a href="#" onclick="signOut();">Sign out</a>
-
+  <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
   
   <footer>
     <p>&copy; 2019 Siri, Chike, Heggy</p>
+
     <p>
       ## Credits
     </p>
@@ -51,6 +50,8 @@
       // Get profile information
       // After you have signed in a user with Google using the default scopes, you can access the user's Google ID, name, profile URL, and email address.
       function onSignIn(googleUser) {
+        debugger;
+        console.log('googleUser?: ' + googleUser);
         var profile = googleUser.getBasicProfile();
         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
         console.log('Name: ' + profile.getName());
@@ -65,6 +66,5 @@
         });
       }
     </script>
-    
 </body>
 </html>
