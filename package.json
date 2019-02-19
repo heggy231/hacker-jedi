@@ -1,0 +1,27 @@
+{
+  "name": "hacker-jedi",
+  "version": "1.0.0",
+  "description": "Hacker Jedi app helps non-traditional software engineers get their foot in the door.",
+  "main": " .js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heggy231/hacker-jedi.git"
+  },
+  "author": "Siri, Chike, Heggy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heggy231/hacker-jedi/issues"
+  },
+  "homepage": "https://github.com/heggy231/hacker-jedi#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "method-override": "^3.0.0",
+    "mongod": "^2.0.0",
+    "mongoose": "^5.4.13"
+  }
+}
