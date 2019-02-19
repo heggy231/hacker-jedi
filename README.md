@@ -23,3 +23,5 @@ https://evening-forest-40933.herokuapp.com/
 - try Web Authentication
 https://www.youtube.com/watch?v=i7of02icPyQ
 Randall Degges - Everything You Ever Wanted to Know About Web Authentication in Node
+
+- https://developers.google.com/identity/branding-guidelines
