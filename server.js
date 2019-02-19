@@ -77,7 +77,6 @@ app.get('/api', (req, res) => {
 });
 
 app.get('/user', (req, res) => {
-
     db.User.find({}, function (err, user) {
         if (err) {
           console.log("error: " + err);
@@ -86,6 +85,22 @@ app.get('/user', (req, res) => {
       });
       //want to display user info here after user logs in
 })
+
+
+app.delete('/user/:id', function (req, res) {
+    console.log('deleted user ID is ', req.params);
+   db.User.findOneAndDelete
+    ( {_id: req.params.id}, 
+    (err, deletedUser) => {
+      if (err) {
+        console.log("the error is " + err);
+      }
+       res.json(deletedUser);
+     });
+  })
+
+
+
 
 
 app.get('/api/add', (req, res) => {
@@ -244,6 +259,8 @@ app.post('/api/add', (req, res) => {
 
   
 app.put('/api/add/:id', function(req,res){
+    // ^^^ get the id of the apprenticeship
+    //need to also get the user id from the frontend (login)
     console.log('updated apprenticeships: ', req.params);
     db.Apprenticeship.findOneAndUpdate({ _id: req.params.id},req.body,{new: true})
       .populate('user_created')

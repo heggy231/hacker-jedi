@@ -9,8 +9,6 @@ $(document).ready(function(){
     
     apprTarget = $('#apprList'); 
 
-    
-
 const handleError = function(err) {
     console.log('error: ' + err);
 };
@@ -21,10 +19,12 @@ const handleError = function(err) {
 
 const handleSuccess = function(json) {
     apprList = json;
+    //console.log(User._id),
     console.log(json);
     for(i=0; i<apprList.length; i++) {
-        apprTarget.append(`
-        <div>
+        //if user_created (for specific appr) === current_userID, then display the appr
+        apprTarget.append(
+       `<div>
         <div class= "displayed-input"> 
         <li class = "company"> Company: ${apprList[i].company}, </li>
         <li class = "city"> City: ${apprList[i].city}, </li>
@@ -40,11 +40,12 @@ const handleSuccess = function(json) {
              <li> <input type="text" class="descriptionInput" value="${apprList[i].description}" /> </li> 
               <button class="save" data-id="${apprList[i]._id}">Save</button>
         </span>
-        </div>
-        `
-        )}
+        </div> `
+        )
+    }
     console.log(apprTarget);
 }
+
 
 
 
@@ -54,6 +55,19 @@ const handleSuccess = function(json) {
         success: handleSuccess,
         error: handleError
       });
+
+
+
+const getUserID = function(json) {
+    console.log(json._id);
+}
+
+    $.ajax({
+        method:'GET',
+        url: '/user',
+        success: getUserID,
+        error: handleError
+    })
 
 
 
@@ -171,3 +185,6 @@ function addSuccess(json) {
     )
     console.log(apprTarget);
   }
+
+
+  
