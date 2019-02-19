@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Load the Google Platform Library -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- Specify your app's client ID I need to enter my client ID here securely-->
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+
   <title>Signup with Google</title>
 </head>
 <body>
     <h1>Login using Google Auth</h1>
+    <!-- Add a Google Sign-In button -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 </body>
 </html>
