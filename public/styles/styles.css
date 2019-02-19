@@ -1,0 +1,49 @@
+header {
+  margin-bottom: 40px;
+}
+
+h1 {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: space-around;
+}
+
+.search {
+    flex: 1;
+    margin: 6px;
+}
+
+.city {
+    flex: 1;
+    margin: 6px;
+}
+
+input {
+    margin: 6px;
+}
+
+#dropdown {
+    margin: 6px;
+}
+
+.submit-button {
+    margin: 6px;
+}
+
+.apprenticeship-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.apprenticeship {
+    display: flex;
+    flex-direction: column;
+}
+
+.first-row, .second-row, .third-row {
+    display: flex
+}
