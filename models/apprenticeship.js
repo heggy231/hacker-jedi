@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const ApprenticeshipSchema = new Schema({
@@ -11,5 +10,5 @@ const ApprenticeshipSchema = new Schema({
 });
 
 const Apprenticeship = mongoose.model('Apprenticeship', ApprenticeshipSchema );
-
 module.exports  = Apprenticeship;
+

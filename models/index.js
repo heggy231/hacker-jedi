@@ -8,3 +8,10 @@
     db.once('open', function() {
         console.log('db is now open.');
       });
+
+
+module.exports = {
+  User: require('./user.js'),
+  Apprenticeship: require('./apprenticeship.js')
+};
+
