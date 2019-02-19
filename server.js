@@ -98,15 +98,15 @@ app.get('/api/add', (req, res) => {
 })
 
 
-app.post('/api/add', (req, res) => {
-    db.Apprenticeship(req.body).save(function(err, apprenticeship){
-          if (err) {
-            console.log("error: " + err);
-          }
-          console.log("created " + apprenticeship);
-          res.json(apprenticeship);
-        });
-  })
+// app.post('/api/add', (req, res) => {
+//     db.Apprenticeship(req.body).save(function(err, apprenticeship){
+//           if (err) {
+//             console.log("error: " + err);
+//           }
+//           console.log("created " + apprenticeship);
+//           res.json(apprenticeship);
+//         });
+//   })
 
 
 //   app.post('/profile/add', (req, res) => {
@@ -129,14 +129,28 @@ app.post('/api/add', (req, res) => {
 //   })
 
 
-// app.post('/api/add', (req, res ) => {
-//     res.status = 200;
   
-//     let newUser = {
+//     let  = {
 //       name: req.body.name,
 //       email: req.body.email,
 //       user_created: ''
 //     }
+
+
+
+
+//Chike's
+
+// app.post('/api/add', (req, res ) => {
+
+//      let newUser = new db.User({
+//           //this gets from the form on index.html ... how to get from a form on another page?
+//           firstName: req.body.firstName,
+//           lastName: req.body.lastName,
+//            email: req.body.email,
+//           company: req.body.company,
+//        //userCreated?
+//         });
   
 //     User.create(newUser, (err, userCreated)=> {
 //       if (err) {
@@ -154,7 +168,8 @@ app.post('/api/add', (req, res) => {
 //         let apprenticeship = {
 //           company: req.body.company,
 //           url: req.body.url,
-//           description: req.body.description
+//           description: req.body.description,
+//           city: req.body.city
 //          }
     
 //         apprenticeship['user_created'] = userCreated._id;
@@ -177,19 +192,71 @@ app.post('/api/add', (req, res) => {
 //   });
 
 
+//Heggy's
+// Creat new apprenticeship
+app.post('/api/add', (req, res) => {
+    // create new apprenticeship with form data ('req.body')
+    console.log("body is ", req.body);
+    let newApprenticeship = new db.Apprenticeship({
+      company: req.body.company,
+      city: req.body.city,
+      url: req.body.url,
+      description: req.body.description,
+      user_created: null,
+    });
+    // find the user from req.body
+    db.User.findOne({email: req.body.email}, (err, user) => {
+      if (err) {
+        return console.log(err);
+      }
+      // if that user doesn't exist yet, create a new one
+      if (user === null) {
+        db.User.create({name: req.body.user, email: req.body.email}, (err, newUser) => {
+          if (err) {
+            return console.log(err);
+          }
+          createApprenticeshipWithUser(newApprenticeship, newUser, res);
+        });
+      } else {
+        createApprenticeshipWithUser(newApprenticeship, user, res);
+      }
+    }); 
+    // save new Apprentice
+  }); 
+  
+  // create Apprenticeship With new User function
+  function createApprenticeshipWithUser(apprenticeship, user, res) {
+    // add this user to the apprenticeship
+    apprenticeship.user_created = user;
+    // save new apprenticeship to database
+    apprenticeship.save(function(err, book) {
+      if (err) { 
+        return console.log("save error: " + err)
+      }
+      console.log("saved ", apprenticeship.company);
+      // send back the apprenticeship
+      res.json(apprenticeship);
+    });
+  }
+
+
+
 
   
 app.put('/api/add/:id', function(req,res){
     console.log('updated apprenticeships: ', req.params);
-    db.Apprenticeship.findOneAndUpdate(
-      { _id: req.params.id},
-      req.body,
-      {new: true},
-      (err, updatedAppr) => {
+    db.Apprenticeship.findOneAndUpdate({ _id: req.params.id},req.body,{new: true})
+      .populate('user_created')
+      .exec( (err, apprenticeship) => {
       if (err) {
         console.log("the error is " + err);
       }
-      res.json(updatedAppr);
+    //    apprenticeship.user_created.email = req.body.email;
+    //    apprenticeship.company = requ.body.company;
+    //    apprenticeship.url = requ.body.url;
+    //    apprenticeship.city = req.body.city;
+    //    apprenticeship.description = req.body.description;
+      res.json(apprenticeship);
     });
   });
 
@@ -216,8 +283,6 @@ app.put('/api/add/:id', function(req,res){
 //        res.json(apprenticeship);
 //     }
 //   });
-
-
 
 
 

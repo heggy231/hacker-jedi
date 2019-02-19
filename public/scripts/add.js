@@ -9,9 +9,15 @@ $(document).ready(function(){
     
     apprTarget = $('#apprList'); 
 
+    
+
 const handleError = function(err) {
     console.log('error: ' + err);
 };
+
+
+
+//MOVED THIS TO APP.JS
 
 const handleSuccess = function(json) {
     apprList = json;
@@ -28,10 +34,10 @@ const handleSuccess = function(json) {
         <button class="edit" type="button" data-id=${apprList[i]._id}> Edit </button> 
         </div>
         <span class="edit-input" style="display: none">
-              <input type="text" class = "companyInput" value="${apprList[i].company}" />
-              <input type="text" class = "cityInput" value="${apprList[i].city}" />
-              <input type="text" class = "urlInput" value="${apprList[i].url}" />
-              <input type="text" class = "descriptionInput" value="${apprList[i].description}" />
+             <li> <input type="text" class="companyInput" value="${apprList[i].company}" /> </li> 
+             <li> <input type="text" class="cityInput" value="${apprList[i].city}" /> </li> 
+             <li> <input type="text" class="urlInput" value="${apprList[i].url}" /> </li> 
+             <li> <input type="text" class="descriptionInput" value="${apprList[i].description}" /> </li> 
               <button class="save" data-id="${apprList[i]._id}">Save</button>
         </span>
         </div>
@@ -76,6 +82,8 @@ const handleSuccess = function(json) {
   });
 
 
+  //edit
+
   apprTarget.on('click', '.edit', function() {
     console.log('clicked edit button to ' + $(this).attr('data-id'));
     $(this).parent().parent().find(".edit-input").css("display", "block");
@@ -83,7 +91,11 @@ const handleSuccess = function(json) {
   });
 
 
-  
+
+
+
+  //save edited
+
   apprTarget.on('click', '.save', function() {
     //$(this).parent().parent().find(".displayed-input").hide();
     let newCompany = $(this).parent().find(".companyInput").val();
@@ -95,8 +107,12 @@ const handleSuccess = function(json) {
     console.log($(this).parent().find(".descriptionInput").val());
 
     $(this).parent().parent().find(".edit-input").css("display", "none");
-    //this is showing the old input...
-    //how to get it to show the new input?
+    
+    $(this).parent().parent().find(".company").html('Company: ' + newCompany );
+    $(this).parent().parent().find(".city").html('City ' + newCity );
+    $(this).parent().parent().find(".url").html('URL: ' + newUrl );
+    $(this).parent().parent().find(".description").html('Description: ' + newDesc );
+
     $(this).parent().parent().find(".displayed-input").show();
 
     $.ajax({
@@ -109,13 +125,15 @@ const handleSuccess = function(json) {
         description: newDesc
         },
       success: (appr) => {
+          console.log(appr);
           //what?
           //uh what's happening here?
-          //seems like it is getting all company fields and setting them to 
-          //$(this).parent().parent().find(".company").html(appr.company);
+          //seems like it is getting all company fields and setting them to $(this).parent().parent().find(".company").html(appr.company);
+        //hmmm, seems like nothing happens when i get rid of it all....
         console.log("eh? is this successful? did ya edit?")
       }
     })
+
   })
 
 
@@ -131,10 +149,25 @@ function addSuccess(json) {
    
     console.log(apprList);
     console.log(json);
-    apprTarget.append(`<li>  Company: ${json.company}, City: ${json.city}, URL: ${json.url},
-    Description: ${json.description} 
-    <button class="delete" type="button" data-id=${json._id}> Delete </button>  
-    <button class="edit" type="button"> Edit </button>
-    </li>`)
+    apprTarget.append(`
+        <div>
+        <div class= "displayed-input"> 
+        <li class = "company"> Company: ${json.company}, </li>
+        <li class = "city"> City: ${json.city}, </li>
+        <li class = "url"> URL: ${json.url}, </li>
+        <li class = "description"> Description: ${json.description} </li>
+        <button class="delete" type="button" data-id=${json._id}> Delete </button>  
+        <button class="edit" type="button" data-id=${json._id}> Edit </button> 
+        </div>
+        <span class="edit-input" style="display: none">
+              <li><input type="text" class = "companyInput" value="${json.company}" /></li>
+              <li><input type="text" class = "cityInput" value="${json.city}" /></li>
+              <li><input type="text" class = "urlInput" value="${json.url}" /></li>
+              <li><input type="text" class = "descriptionInput" value="${json.description}" /></li>
+              <button class="save" data-id="${json._id}">Save</button>
+        </span>
+        </div>
+        `   
+    )
     console.log(apprTarget);
   }
