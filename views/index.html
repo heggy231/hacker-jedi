@@ -94,14 +94,13 @@
       $("#gmailUserSubmit").click(function(e) {
       // debugger;
       console.log("hello");
-      let email = googleSignInObj.email();
-      let name =  googleSignInObj.getName();
+
         $.ajax({
           method: 'POST',
           url: 'http://localhost:3000/api/profile',
           data: {
-            name: name,
-            email: email,
+            name: googleSignInObjName,
+            email: googleSignInObjEmail,
           },
           success: function( response ) {
             console.log(response);
