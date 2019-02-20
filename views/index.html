@@ -28,7 +28,7 @@
 <body>
   <h1>Welcome to Hacker Jedi app</h1>
   
-  <a href="./profile"> go to user profile </a> -->
+  <a href="./profile"> go to user profile </a>
   <!-- add create user plus  -->
 
   <div>
@@ -39,6 +39,7 @@
   <h1>Login using Google Auth</h1>
   <!-- Add a Google Sign-In button -->
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <button id="gmailUserSubmit">Submit</button>
   <a href="#" onclick="signOut();">Sign out</a>
   <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
   
@@ -63,15 +64,60 @@
   <script>
       // Get profile information
       // After you have signed in a user with Google using the default scopes, you can access the user's Google ID, name, profile URL, and email address.
-      function onSignIn(googleUser) {
-        debugger;
-        console.log('googleUser?: ' + googleUser);
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      }
+
+    let googleSignInObjEmail;
+    let googleSignInObjName;
+    function onSignIn(googleUser) {
+      // debugger;
+      // console.log('googleUser?: ' + googleUser);
+      // var profile = googleUser.getBasicProfile();
+      // console.log("profile: " + profile);
+      // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      // console.log('Name: ' + profile.getName());
+      // console.log('Image URL: ' + profile.getImageUrl());
+      // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      // googleSignInObj = googleUser.getBasicProfile();
+
+      // passes user email
+      googleSignInObjEmail = googleUser.getBasicProfile().getEmail();
+      // passes user name
+      googleSignInObjName = googleUser.getBasicProfile().getName();
+      console.log(`googleSignInObjEmail ${googleSignInObjEmail}`);
+      console.log(`googleSignInObjName ${googleSignInObjName}`);
+    }
+
+    console.log('hello ###############');
+    console.log(`outside I can see: ${googleSignInObjName} ${googleSignInObjEmail}`);
+
+    $(document).ready(function() {
+      console.log(googleSignInObjName, googleSignInObjEmail);
+      $("#gmailUserSubmit").click(function(e) {
+      // debugger;
+      console.log("hello");
+      let email = googleSignInObj.email();
+      let name =  googleSignInObj.getName();
+        $.ajax({
+          method: 'POST',
+          url: 'http://localhost:3000/api/profile',
+          data: {
+            name: name,
+            email: email,
+          },
+          success: function( response ) {
+            console.log(response);
+          },
+          error: function() {
+            alert('There was an error');
+          },
+          beforeSend: function () {
+
+          },
+          complete: function () {
+
+          }
+        });
+      });
+    });
   
       function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
@@ -80,5 +126,6 @@
         });
       }
     </script>
+    <script src="../public/scripts/app.js"></script>
 </body>
 </html>

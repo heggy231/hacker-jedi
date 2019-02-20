@@ -12,4 +12,4 @@ let ApprenticeshipSchema = new Schema({
 
 // name of the database is inside of mongoose.model('NameOfDB') = 'Apprenticeship'
 const Apprenticeship = mongoose.model('Apprenticeship', ApprenticeshipSchema );
-module.exports  = Apprenticeship;
+module.exports = Apprenticeship;

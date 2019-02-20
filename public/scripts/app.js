@@ -111,3 +111,37 @@ function newApprenticeshipSuccess(json) {
 function newApprenticeshipError() {
   console.log("newApprenticeship error!");
 }
+
+// $(document).ready(function() {
+//   $("#gmailUserSubmit").click(function(e) {
+//     // debugger;
+//     console.log("hello");
+//     var profile = googleUser.getBasicProfile();
+//     let email = profile.email();
+//     let name =  profile.getName();
+//     $.ajax({
+//       method: 'POST',
+//       url: 'http://localhost:3000/api/profile',
+//       data: {
+//         name: name,
+//         email: email,
+//       },
+//       success: function( response ) {
+//         console.log(response);
+//       },
+//       error: function() {
+//         alert('There was an error');
+//       },
+//       beforeSend: function () {
+
+//       },
+//       complete: function () {
+
+//       }
+//     });
+//   });
+// });
+
+
+  
+

@@ -8,7 +8,7 @@
 // require express in our app
 const express = require('express');
 const bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+const methodOverride = require('method-override');
 // generate a new express app and call it 'app'
 let app = express();
 
@@ -137,6 +137,12 @@ app.put('/api/apprenticeships/:id', (req, res) => {
   });
 });
 
+// send new user data from gmail login
+app.post('api/profile', function (req, res) {
+  console.log(req.body);
+  res.json(req.body);
+});
+
 // res.sendFile('views/index.html', { });
 
 // Serve static files from the `/public` directory:
@@ -191,7 +197,6 @@ app.get('/api', (req, res) => {
 });
 
 app.get('/user', (req, res) => {
-
     db.User.find({}, function (err, user) {
         if (err) {
           console.log("error: " + err);
@@ -210,6 +215,7 @@ app.get('/api/add', (req, res) => {
         res.json(apprenticeship);
       });
 })
+
 
 
 app.post('/api/add', (req, res) => {
