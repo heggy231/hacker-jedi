@@ -68,6 +68,7 @@
     let googleSignInObjEmail;
     let googleSignInObjName;
     function onSignIn(googleUser) {
+      var id_token = googleUser.getAuthResponse().id_token;
       // debugger;
       // console.log('googleUser?: ' + googleUser);
       // var profile = googleUser.getBasicProfile();
@@ -93,7 +94,7 @@
       console.log(googleSignInObjName, googleSignInObjEmail);
       $("#gmailUserSubmit").click(function(e) {
       // debugger;
-      console.log("hello");
+        console.log("hello inside from ajax");
 
         $.ajax({
           method: 'POST',
@@ -103,7 +104,7 @@
             email: googleSignInObjEmail,
           },
           success: function( response ) {
-            console.log(response);
+            console.log(`Signed in as: ${response}`);
           },
           error: function() {
             alert('There was an error');
