@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
   <link rel="stylesheet" href="../public/styles/styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <meta name="google-signin-client_id" content="462656938782-hsf9hb9jmqha8p88d335dp0vetuoph1i.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -13,21 +17,41 @@
 </head>
 <body>
   <header> 
-      <h1> Hacker Jedi </h1>
+    <div class="intro">
+
+        <h1 class="hacker-jedi"> Hacker Jedi </h1>
+        
+        <div class="login-add"> 
+
+            <a href="#">
+                <div class="add">
+                    Add New Apprenticship
+                  </div>
+            </a>
+
+            <a href="#">
+                <div class="login">
+                    Login
+                </div>
+            </a>
+
+        </div>
+  
+    </div>
+    <div class="user-status"> 
+        <p class="signed-in-as"> signed in as</p> <p class="user"> Chike Onuorah</p>
+    </div>   
   </header>
+
+  
+  
    <div class= "container"> 
    <div class="search-container"> 
     <form class="search-form">
-        <input class="search" type="text"> </input>
-        <select id="dropdown">
-            <option value="">Name</option>
-            <option value="saab">Key Word</option>
-          </select>
-        <input class="city" type="text" placeholder="City"> </input>
-        <select id="dropdown">
-            <option value="">Start Date</option>
-        </select>
-        <input type="submit" value="submit" class="submit-button"> </input>  
+        <input class="search" type="text" placeholder="Search by Company, Keyword, Etc."> </input>
+
+        <input class="city-search" type="text" placeholder="City"> </input>
+        <input type="submit" value="SEARCH" class="submit-button"> </input>  
     </form>
     <div class="apprenticeship-container"> 
        <div class="apprenticeship">
@@ -35,17 +59,14 @@
            <div class="apprenticeship-name"> Name of Apprenticeship <br> 
             <div class="app_email"> www.apprenticeship.com </div>
           </div>
-            
-          <div class="start-date"> Start Date 5/16/2019 </div>
+          <div class="start-date"> 6 MONTHS </div>
          </div>
 
          <div class="second-row">
             <div class="city-contact">
                 <p class="city">san francisco, ca </p> | <p class="contact"> contact@contact.com </p> 
               </div>
-          <div class="read-more"> 
-              EDIT 
-          </div>
+          
          </div>
 
          <div class="third-row">
@@ -71,17 +92,14 @@
              <div class="apprenticeship-name"> Name of Apprenticeship <br> 
                <div class="app_email"> www.apprenticeship.com </div>
              </div>
-               
-             <div class="start-date"> Start Date :5/16/2019 </div>
+             <div class="start-date"> 6 MONTHS </div>
             </div>
    
             <div class="second-row">
                 <div class="city-contact">
                     <p class="city">san francisco, ca</p> | <p class="contact"> contact@contact.com </p> 
                   </div>
-             <div class="read-more"> 
-                 EDIT 
-             </div>
+              
             </div>
    
             <div class="third-row">
@@ -107,17 +125,14 @@
                <div class="apprenticeship-name"> Name of Apprenticeship <br> 
                  <div class="app_email"> www.apprenticeship.com </div>
                </div>
-                 
-               <div class="start-date"> Start Date 5/16/2019 </div>
+               <div class="start-date"> 6 MONTHS </div>
               </div>
      
               <div class="second-row">
                   <div class="city-contact">
                       <p class="city">san francisco, ca</p> | <p class="contact"> contact@contact.com </p> 
                     </div>
-               <div class="read-more"> 
-                  EDIT 
-               </div>
+                
               </div>
      
               <div class="third-row">
@@ -143,17 +158,15 @@
                  <div class="apprenticeship-name"> Name of Apprenticeship <br> 
                    <div class="app_email"> www.apprenticeship.com </div>
                  </div>
-                   
-                 <div class="start-date"> Start Date 5/16/2019 </div>
+                 <div class="start-date"> 6 MONTHS </div>
+
                 </div>
        
                 <div class="second-row">
                     <div class="city-contact">
                         <p class="city">san francisco, ca</p> | <p class="contact"> contact@contact.com </p> 
                       </div>
-                 <div class="read-more"> 
-                    EDIT 
-                 </div>
+                  
                 </div>
        
                 <div class="third-row">
@@ -179,17 +192,15 @@
                    <div class="apprenticeship-name"> Name of Apprenticeship <br> 
                      <div class="app_email"> www.apprenticeship.com </div>
                    </div>
-                     
-                   <div class="start-date"> Start Date 5/16/2019 </div>
+                   <div class="start-date"> 6 MONTHS </div>
+                   
                   </div>
          
                   <div class="second-row">
                     <div class="city-contact">
                           <p class="city">san francisco, ca</p> | <p class="contact"> contact@contact.com </p> 
                     </div>
-                    <div class="read-more"> 
-                       EDIT 
-                    </div>
+                  
                   </div>
          
                   <div class="third-row">
@@ -211,9 +222,10 @@
                  </div>
 
        
+     </div>
    </div>
+
     
-   </div>
    <script src="../public/scripts/app.js"></script>
 </body>
 </html>
