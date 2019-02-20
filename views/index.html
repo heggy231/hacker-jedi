@@ -24,13 +24,13 @@
   <!-- APPLICATION SCRIPTS -->
   <script src="/scripts/app.js"></script>
 
-
  <!-- Siri added these scripts! -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="/scripts/app.js"></script>
   
-
 </head>
+
+
 <body>
   <h1>Welcome to Hacker Jedi app</h1>
   
@@ -66,26 +66,8 @@
       <li><a href="https://github.com/amyyf">Amy Frieson</a></li>
     </ul> -->
   </footer>
-  <script>
-      // Get profile information
-      // After you have signed in a user with Google using the default scopes, you can access the user's Google ID, name, profile URL, and email address.
-      function onSignIn(googleUser) {
-        debugger;
-        console.log('googleUser?: ' + googleUser);
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      }
-  
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
-    </script>
+
+<button id="gmailUserSubmit">Submit</button>
 
 <a href="./profile"> go to user profile </a>
 <div>

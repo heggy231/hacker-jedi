@@ -45,3 +45,68 @@ const handleSuccess = function(json) {
       });
 
 });
+
+let profile;
+function onSignIn(googleUser) {
+  //debugger;
+  console.log('googleUser?: ' + googleUser);
+  profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+   // This is null if the 'email' scope is not present.
+   // access specific variables through local storage.
+   localStorage.user = profile.U3
+   console.log(profile.U3)
+  //put ajax request here
+
+  
+  //  user = localStorage.user
+  //  user._id
+  //return profile;
+}
+
+console.log(profile);
+if(profile !== undefined){
+  console.log(profile);
+}
+
+
+$(document).ready(function() {
+$("#gmailUserSubmit").click(function(e) {
+// debugger;
+console.log("hello");
+let email = profile.getEmail();
+console.log(email);
+let name = profile.getName();
+  $.ajax({
+    method: 'POST',
+    url: '/user',
+    data: {
+      name: name,
+      email: email,
+    },
+    success: function( response ) {
+      console.log(response);
+    },
+    error: function() {
+      alert('There was an error');
+    },
+    beforeSend: function () {
+    },
+    complete: function () {
+    }
+  });
+});
+});
+
+
+function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    localStorage.removeItem('user')
+    console.log('User signed out.');
+  });
+}
+

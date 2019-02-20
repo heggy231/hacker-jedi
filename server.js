@@ -76,6 +76,13 @@ app.get('/api', (req, res) => {
   })
 });
 
+
+// app.get('/profile', (req, res) => {
+
+// })
+
+
+
 app.get('/user', (req, res) => {
     db.User.find({}, function (err, user) {
         if (err) {
@@ -100,6 +107,12 @@ app.delete('/user/:id', function (req, res) {
   })
 
 
+// app.delete('/user', function (req, res) {
+//   console.log('deleted all');
+//  db.User.collection.remove()
+// })
+
+
 
 
 
@@ -113,15 +126,15 @@ app.get('/api/add', (req, res) => {
 })
 
 
-// app.post('/api/add', (req, res) => {
-//     db.Apprenticeship(req.body).save(function(err, apprenticeship){
-//           if (err) {
-//             console.log("error: " + err);
-//           }
-//           console.log("created " + apprenticeship);
-//           res.json(apprenticeship);
-//         });
-//   })
+app.post('/profile', (req, res) => {
+    db.User(req.body).save(function(err, userCreated){
+          if (err) {
+            console.log("error: " + err);
+          }
+          console.log("created " + userCreated);
+          res.json(userCreated);
+        });
+  })
 
 
 //   app.post('/profile/add', (req, res) => {
@@ -268,11 +281,6 @@ app.put('/api/add/:id', function(req,res){
       if (err) {
         console.log("the error is " + err);
       }
-    //    apprenticeship.user_created.email = req.body.email;
-    //    apprenticeship.company = requ.body.company;
-    //    apprenticeship.url = requ.body.url;
-    //    apprenticeship.city = req.body.city;
-    //    apprenticeship.description = req.body.description;
       res.json(apprenticeship);
     });
   });
