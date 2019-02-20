@@ -4,8 +4,8 @@ let User = require('./user');
 
 let ApprenticeshipSchema = new Schema({
    company: String,
-   location: String,
-   link: String,
+   city: String,
+   url: String,
    description: String,
    user_created: { type: Schema.Types.ObjectId, ref: 'User' }
 });

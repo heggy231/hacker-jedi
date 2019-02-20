@@ -12,14 +12,14 @@
   <title>Hacker Jedi</title>
   <!-- resource: https://www.w3schools.com/bootstrap/bootstrap_get_started.asp MaxCDN provides CDN support for Bootstrap's CSS and JavaScript. You must also include jQuery: -->
   <!-- STYLESHEETS CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <!-- VENDOR SCRIPTS jQuery library -->
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   <!-- Latest compiled JavaScript -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <!-- APPLICATION SCRIPTS -->
   <script src="/scripts/app.js"></script>
@@ -27,105 +27,18 @@
 </head>
 <body>
   <h1>Welcome to Hacker Jedi app</h1>
-  
-  <a href="./profile"> go to user profile </a>
-  <!-- add create user plus  -->
+  <h2>Login using Google Auth</h2>
+                <a href="./profile"> go to user profile </a>
 
-  <div>
-    <div>Do you like add a new apprenticeship?</div>
-      <a href="./createUser.html">Add +</a>
-  </div>
 
-  <h1>Login using Google Auth</h1>
-  <!-- Add a Google Sign-In button -->
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  <button id="gmailUserSubmit">Submit</button>
-  <a href="#" onclick="signOut();">Sign out</a>
-  <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
-  
-  <footer>
-    <p>&copy; 2019 Siri, Chike, Heggy</p>
 
-    <p>
-      ## Credits
-    </p>
-    <!-- <ul id="credits">
-      <li><a href="https://github.com/fvcproductions">FVCproductions</a></li>
-      <li><a href="https://modayil.me">Benjamin Modayil</a></li>
-      <li><a href="https://linkedin.com/in/leilanir">Leilani Raranga</a></li>
-      <li><a href="https://www.coltonhurst.com">Colton Hurst</a></li>
-      <li><a href="https://github.com/jschultz21">Julia Schultz</a></li>
-      <li><a href="https://github.com/ibrittanyhill">Brittany Hill</a></li>
-      <li><a href="https://www.linkedin.com/in/chris-miller-6470751/">Chris Miller</a></li>
-      <li><a href="https://github.com/markarce">Mark Arce</a></li>
-      <li><a href="https://github.com/amyyf">Amy Frieson</a></li>
-    </ul> -->
-  </footer>
-  <script>
-      // Get profile information
-      // After you have signed in a user with Google using the default scopes, you can access the user's Google ID, name, profile URL, and email address.
+<a href="./profile"> go to user profile </a>
+<div>
+  <ul id="apprList">
 
-    let googleSignInObjEmail;
-    let googleSignInObjName;
-    function onSignIn(googleUser) {
-      var id_token = googleUser.getAuthResponse().id_token;
-      // debugger;
-      // console.log('googleUser?: ' + googleUser);
-      // var profile = googleUser.getBasicProfile();
-      // console.log("profile: " + profile);
-      // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      // console.log('Name: ' + profile.getName());
-      // console.log('Image URL: ' + profile.getImageUrl());
-      // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      // googleSignInObj = googleUser.getBasicProfile();
+  </ul>
+</div>
 
-      // passes user email
-      googleSignInObjEmail = googleUser.getBasicProfile().getEmail();
-      // passes user name
-      googleSignInObjName = googleUser.getBasicProfile().getName();
-      console.log(`googleSignInObjEmail ${googleSignInObjEmail}`);
-      console.log(`googleSignInObjName ${googleSignInObjName}`);
-    }
 
-    console.log('hello ###############');
-    console.log(`outside I can see: ${googleSignInObjName} ${googleSignInObjEmail}`);
-
-    $(document).ready(function() {
-      console.log(googleSignInObjName, googleSignInObjEmail);
-      $("#gmailUserSubmit").click(function(e) {
-      // debugger;
-        console.log("hello inside from ajax");
-
-        $.ajax({
-          method: 'POST',
-          url: 'http://localhost:3000/api/profile',
-          data: {
-            name: googleSignInObjName,
-            email: googleSignInObjEmail,
-          },
-          success: function( response ) {
-            console.log(`Signed in as: ${response}`);
-          },
-          error: function() {
-            alert('There was an error');
-          },
-          beforeSend: function () {
-
-          },
-          complete: function () {
-
-          }
-        });
-      });
-    });
-  
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
-    </script>
-    <script src="../public/scripts/app.js"></script>
 </body>
 </html>

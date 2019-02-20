@@ -1,147 +1,47 @@
-console.log("Sanity Check: JS is working!");
+console.log("up and running index.html");
 
-$( document ).ready(function() {
-  $("#search").change(function(){
-    // alert("The text has been changed.");
-    // call my api
-    $.ajax({
-      dataType: "json",
-      url: "./api/apprenticeships",
-    }).then(function(apprenData) {
-      console.log(apprenData);
+var apprList = [];
+var apprTarget;
 
-      for(var i = 0; i < apprenData.length; i++){
-        $("#appren-data").append(
-          `<tr><form id="${apprenData[i]._id}_apprenticeshipEditForm">
-             <td>
-              <div id="${apprenData[i]._id}_company">${apprenData[i].company}</div>
-             </td>
-             <td>
-              <div id="${apprenData[i]._id}_location">${apprenData[i].location}</div>
-             </td> 
-             <td>
-              <div id="${apprenData[i]._id}_link">${apprenData[i].link}</div>
-             </td> 
-             <td>
-              <div id="${apprenData[i]._id}_description">${apprenData[i].description}</div>
-             </td>
-             <td>
-              <button id="${apprenData[i]._id}" type="submit" class="btn btn-default editApprenticeship">Edit</button>
-             </td>
-          </form></tr>`);
-      }        
-      $(".editApprenticeship").click(function(e){
-        e.preventDefault();
-        let button = $("#" + e.target.id);
-        let form = $("#" + e.target.id + "_apprenticeshipEditForm");
-        if (button.text() === "Save") {
-          form.submit();
-        // button is edit button 
-        } else {
-          button.html(`Save`);  // so that I can save it once I am done editing
-          
-          let company = $("#" + e.target.id + "_company");
-          company.html(`<input type="text" name="company" value="${company.text()}"/>`);
+//JQUERY
+$(document).ready(function(){
+    console.log("jquery is working index.html");
 
-          let location = $("#" + e.target.id + "_location");
-          location.html(`<input type="text" name="location" value="${location.text()}"/>`);
+    apprTarget = $('#apprList');
 
-          let link = $("#" + e.target.id + "_link");
-          link.html(`<input type="text" name="link" value="${link.text()}"/>`);
-
-          let description = $("#" + e.target.id + "_description");
-          description.html(`<input type="text" name="description" value="${description.text()}"/>`);
-        
-          
-          form.on('submit', function(e2) {
-            e2.preventDefault();
-            // toggle button back to edit for next time around
-            button.html(`Edit`);
-            console.log('new apprenticeship serialized', $(this).serializeArray());
-           
-            let newData = {
-              company: company[0].firstChild.value,
-              location: location[0].firstChild.value,
-              link: link[0].firstChild.value,
-              description: description[0].firstChild.value
-            }
-
-            $.ajax({ // use PUT for editing
-              method: 'PUT',
-              // tell db exactly which one I am updating e-target of its id
-              url: '/api/apprenticeships/'+ e.target.id,// + "?_method=put",
-              // this points to form
-              data: newData,
-              success: function() {
-                company.html(newData.company);
-                location.html(newData.location);
-                link.html(newData.link);
-                description.html(newData.description);
-                newApprenticeshipSuccess();
-              },
-              error: newApprenticeshipError,
-            });
-          });
-        }
-      });
-    });
-  });
+const handleError = function(err) {
+    console.log('error: ' + err);
+};
 
 
-  $('#newApprenForm').on('submit', function(e) {
-    e.preventDefault();
-    // serialized which creates a string
-    console.log('new apprenticeship serialized', $(this).serializeArray());
-    $.ajax({
-      method: 'POST',
-      url: '/api/apprenticeships',
-      data: $(this).serializeArray(),
-      success: newApprenticeshipSuccess,
-      error: newApprenticeshipError,
-    });
-  });
-});
 
-function newApprenticeshipSuccess(json) {
-  // clear the form
-  $('#newApprenForm input').val('');
-  alert(json);
-} 
+//MOVED THIS TO APP.JS
 
-function newApprenticeshipError() {
-  console.log("newApprenticeship error!");
+const handleSuccess = function(json) {
+    apprList = json;
+    console.log(json);
+    for(i=0; i<apprList.length; i++) {
+        apprTarget.append(`
+        <div>
+        <div class= "displayed-input">
+        <li class = "company"> Company: ${apprList[i].company}, </li>
+        <li class = "city"> City: ${apprList[i].city}, </li>
+        <li class = "url"> URL: ${apprList[i].url}, </li>
+        <li class = "description"> Description: ${apprList[i].description} </li>
+        </div>
+        </div>
+        <br>
+        `
+        )}
+    console.log(apprTarget);
 }
 
-// $(document).ready(function() {
-//   $("#gmailUserSubmit").click(function(e) {
-//     // debugger;
-//     console.log("hello");
-//     var profile = googleUser.getBasicProfile();
-//     let email = profile.email();
-//     let name =  profile.getName();
-//     $.ajax({
-//       method: 'POST',
-//       url: 'http://localhost:3000/api/profile',
-//       data: {
-//         name: name,
-//         email: email,
-//       },
-//       success: function( response ) {
-//         console.log(response);
-//       },
-//       error: function() {
-//         alert('There was an error');
-//       },
-//       beforeSend: function () {
 
-//       },
-//       complete: function () {
+    $.ajax({
+        method: 'GET',
+        url: '/api/add',
+        success: handleSuccess,
+        error: handleError
+      });
 
-//       }
-//     });
-//   });
-// });
-
-
-  
-
+});
