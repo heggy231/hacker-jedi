@@ -62,13 +62,16 @@ app.get('/api', (req, res) => {
     GitHubLink: "CHANGE THIS", // CHANGE ME
     HerokuLink: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
+      //2 pages for 
+      {method: "GET", path: "/", description: "User lands and starts searching for apprenticeship."},
+      {method: "GET", path: "/add", description: "User adds new apprenticeship."},
+      //server side
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/profile", despcription: "View your user profile here" },
-      {method: "GET", path: "/api/add", despcription: "Add a new opportunity here. View, edit, & delete the one's you've added" },
-      {method: "POST", path: "/api/add", description: "Create new apprenticeship/opportunity"},
-      {method: "PUT", path: "/api/add/:id", description: "Edit an apprenticeship and update it"},
-      {method: "DELETE", path: "/api/add/:id", description: "Delete an apprenticeship that's no longer available/relevant"},
-      {method: "GET", path: "/api/opportunities", despcription: "View all opportunities for breaking into tech here!"}
+      {method: "GET", path: "/api/apprenticeships", despcription: "View all apprenticeships here." },
+      {method: "GET", path: "api/apprenticeships/:keyword", description: "Search keyword"},
+      {method: "POST", path: "/api/apprenticeships", description: "Create new apprenticeship/opportunity, post it to this api"},
+      {method: "PUT", path: "/api/apprenticeships/:id", description: "Edit an apprenticeship and update it"},
+      {method: "DELETE", path: "/api/apprenticeships/:id", description: "Delete an apprenticeship that's no longer available/relevant"},
       //for later: search through opportunities
       //maybe we can add algolia.com's search bar plugin
       //or create our own search queries.
