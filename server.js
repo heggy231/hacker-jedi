@@ -107,13 +107,11 @@ app.delete('/user/:id', function (req, res) {
   })
 
 
-// app.delete('/user', function (req, res) {
+//  THIS CODE REMOVES ALL USERS
+//   app.delete('/user', function (req, res) {
 //   console.log('deleted all');
 //  db.User.collection.remove()
 // })
-
-
-
 
 
 app.get('/api/add', (req, res) => {
@@ -126,15 +124,26 @@ app.get('/api/add', (req, res) => {
 })
 
 
-app.post('/profile', (req, res) => {
-    db.User(req.body).save(function(err, userCreated){
-          if (err) {
-            console.log("error: " + err);
-          }
-          console.log("created " + userCreated);
-          res.json(userCreated);
-        });
+app.post('/user', (req, res) => {
+  let newUser = req.body
+  db.User.create(newUser,(err,createdUser)=>{
+    if (err){
+      res.send(err)
+    }
+    res.json(createdUser)
   })
+});
+
+app.get('/user/:email', (req, res) => {
+  let email = req.params.email
+  db.User.findOne({email: email})
+    .exec((err,foundUser)=>{
+      if (err){
+        res.send(err)
+      }
+      res.json(foundUser)
+    })
+});
 
 
 //   app.post('/profile/add', (req, res) => {

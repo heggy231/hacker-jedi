@@ -18,6 +18,7 @@ const handleError = function(err) {
 //MOVED THIS TO APP.JS
 
 const handleSuccess = function(json) {
+    apprTarget.empty();
     apprList = json;
     console.log(json);
     for(i=0; i<apprList.length; i++) {
@@ -44,9 +45,13 @@ const handleSuccess = function(json) {
         error: handleError
       });
 
-});
+
+
+
+
 
 let profile;
+
 function onSignIn(googleUser) {
   //debugger;
   console.log('googleUser?: ' + googleUser);
@@ -57,56 +62,63 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail());
    // This is null if the 'email' scope is not present.
    // access specific variables through local storage.
-   localStorage.user = profile.U3
+   
    console.log(profile.U3)
   //put ajax request here
 
-  
-  //  user = localStorage.user
-  //  user._id
-  //return profile;
-}
-
-console.log(profile);
-if(profile !== undefined){
-  console.log(profile);
-}
-
-
-$(document).ready(function() {
-$("#gmailUserSubmit").click(function(e) {
-// debugger;
-console.log("hello");
-let email = profile.getEmail();
-console.log(email);
-let name = profile.getName();
   $.ajax({
-    method: 'POST',
-    url: '/user',
-    data: {
-      name: name,
-      email: email,
-    },
-    success: function( response ) {
-      console.log(response);
-    },
-    error: function() {
-      alert('There was an error');
-    },
-    beforeSend: function () {
-    },
-    complete: function () {
-    }
-  });
-});
-});
-
-
-function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    localStorage.removeItem('user')
-    console.log('User signed out.');
-  });
+        method: 'GET',
+        url: `/user/${profie.U3}`,
+        success: function( user ) {
+          console.log('db user',user);
+        },
+        error: function() {
+          alert('There was an error');
+        }
+    })
 }
 
+
+
+// $(document).ready(function() {
+// $("#gmailUserSubmit").click(function(e) {
+// // debugger;
+// console.log("hello");
+// let email = profile.getEmail();
+// console.log(email);
+// let name = profile.getName();
+//   $.ajax({
+//     method: 'POST',
+//     url: '/user',
+//     data: {
+//       name: name,
+//       email: email,
+//     },
+//     success: function( response ) {
+//       console.log(response);
+//     },
+//     error: function() {
+//       alert('There was an error');
+//     },
+//     beforeSend: function () {
+//     },
+//     complete: function () {
+//     }
+//   });
+// });
+// });
+
+// $("#signOut").click(function() {
+// function signOut() {
+//   var auth2 = gapi.auth2.getAuthInstance();
+//   auth2.signOut().then(function () {
+//     localStorage.removeItem('user')
+//     console.log('User signed out.');
+//   });
+// }
+// })
+
+
+
+
+}); // end of jquery
