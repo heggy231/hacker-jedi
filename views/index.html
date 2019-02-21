@@ -42,63 +42,75 @@
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
   <script>
-    function onSignIn(googleUser) {
-      console.log('fired');
-      // debugger;
-      console.log('googleUser?: ' + googleUser);
-      let profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
-      // This is null if the 'email' scope is not present.
-      // access specific variables through local storage.
-      // Go to console googleUser.getBasicProfile().U3 == > email "heggyy@gmail.com"
+  //script won't work when in app.js, but will work here.... hmmmm.... suspicious....
 
-      // profile.U3 is googleUser.getBasicProfile().U3 which is an email of the user
-      console.log(`Gmail email: ${profile.U3}`);
-      console.log(`Gmail email: ${profile.getEmail()}`);
-      console.log(`Gmail Name: ${profile.getName()}`);
-      //put ajax request here
+  function onSignIn(googleUser) {
+    console.log('fired');
+    // debugger;
+    console.log('googleUser?: ' + googleUser);
+    let profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+    // This is null if the 'email' scope is not present.
+    // access specific variables through local storage.
+    // Go to console googleUser.getBasicProfile().U3 == > email "heggyy@gmail.com"
 
-      $.ajax({
-        method: 'GET',
-        url: `user/${profile.getEmail()}`,
-      // dbUser is the obj we are sending to 
-        success: function( dbUser ) {
-          if (dbUser === null){
-            //ajax post create user
-            $.ajax({
-              method: 'POST',
-              url: '/user',
-              //  passing in user data from Oauth
-              data: {
-                name: profile.getName(),
-                email: profile.getEmail(),
-              },
-              success: function(dbUser){
-                localStorage.user = dbUser;
-                console.log(dbuser);
-              },
-              error: function(err){
-                console.log(err)
-              }
-            })
-          }
-          console.log('db user',dbUser);
-          localStorage.user = dbUser;
-          // redirecting to add page
-          location.href= "http://localhost:3000/add";
-        },
-        error: function() {
-          alert('There was an error');
+    // profile.U3 is googleUser.getBasicProfile().U3 which is an email of the user
+    console.log(`Gmail email: ${profile.U3}`);
+    console.log(`Gmail email: ${profile.getEmail()}`);
+    console.log(`Gmail Name: ${profile.getName()}`);
+    //put ajax request here
+
+    $.ajax({
+      method: 'GET',
+      url: `user/${profile.getEmail()}`,
+      // dbUser is the obj we get from backend
+      success: function( dbUser ) {
+        console.log(`dbUser is what?  ${dbUser}`);
+        // if user is not saved inside of database
+        //  then 
+        if (dbUser === null){
+          //ajax post create user
+          $.ajax({
+            method: 'POST',
+            url: '/user',
+            //  passing in user data from Google Oauth
+            data: {
+              name: profile.getName(),
+              email: profile.getEmail(),
+            },
+            success: function(dbUser){
+              debugger;
+              // when user login using googleOauth> memory gets saved
+              //  inside of localStorage and .user has the email address
+              localStorage.user = dbUser;
+              console.log(dbUser);
+            },
+            error: function(err){
+              console.log(err)
+            }
+          })
         }
-      }); // end of ajax
-      
-    }
+        console.log('db user',dbUser);
+        localStorage.user = dbUser;
+        // redirecting to add page
+        // add conditional if user is from local host
+        //  then redirect to http://localhost:3000/add"
+        // if user is on heroku 
+        //  then https://evening-forest-40933.herokuapp.com/add
+        location.href= "http://localhost:3000/add";
+      }, // end of ajax success 
+      error: function() {
+        alert('There was an error');
+      }
+    }); // end of ajax
+    
+  }
   </script>
 
-  <a href="#" onclick="signOut();">Sign out</a>
+  <a href="#" id="mainSignOut">Sign out</a>
   <!-- <a href="" id ="signOut">Sign out</a> -->
   <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
   
@@ -121,13 +133,15 @@
 
 <script>
   //script won't work when in app.js, but will work here.... hmmmm.... suspicious....
-  function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    localStorage.removeItem('user')
-    console.log('User signed out.');
+
+  $('#mainSignOut').click(function() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      localStorage.removeItem('user')
+      console.log('User signed out.');
+    });
   });
-}
+
 </script>
 
 

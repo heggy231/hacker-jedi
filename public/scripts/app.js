@@ -46,9 +46,6 @@ $.ajax({
 
 
 
-
-
-
 let profile;
 
 function onSignIn(googleUser) {
