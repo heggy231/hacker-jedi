@@ -13,7 +13,14 @@ const handleError = function(err) {
     console.log('error: ' + err);
 };
 
+if(localStorage.userEmail === undefined) {
+    $("#signIn").css("display", "block");
+    $("#wrapper").css("display", "none");
+}
 
+
+$("input[type='email']").val(localStorage.userEmail);
+//$("input[type='email']").attr("placeholder", localStorage.userEmail);
 
 //MOVED THIS TO APP.JS
 
@@ -22,6 +29,7 @@ const handleSuccess = function(json) {
     //console.log(User._id),
     console.log(json);
     for(i=0; i<apprList.length; i++) {
+        if(localStorage.userEmail === `${apprList[i].email}`) {
         //if user_created (for specific appr) === current_userID, then display the appr
         apprTarget.append(
        `<div>
@@ -42,6 +50,7 @@ const handleSuccess = function(json) {
         </span>
         </div> `
         )
+        }
     }
     console.log(apprTarget);
 }
@@ -60,6 +69,7 @@ const handleSuccess = function(json) {
 
 const getUserID = function(json) {
     console.log(json._id);
+    console.log(localStorage.userEmail)
 }
 
     $.ajax({

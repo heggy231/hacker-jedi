@@ -70,16 +70,21 @@
                 email: profile.U3
               },
               success: function(dbuser){
-                localStorage.user = dbUser;
-                console.log(dbuser);
+                //store in local storage if you
+                //successfully got a response (posted) to your db
+                //if you don't do this dbUser wont be available across all pages
+                localStorage.userEmail = dbuser.email;
+                console.log("HERe is IZ:" + dbuser.email);
               },
               error: function(err){
                 console.log(err)
               }
             })
           }
+          localStorage.userEmail = dbUser.email;
+          console.log("HERe is IZ:" + dbUser.email);
           console.log('db user',dbUser);
-          localStorage.user = dbUser
+         // localStorage.user = dbUser
         },
         error: function() {
           alert('There was an error');
@@ -114,7 +119,7 @@
   function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    localStorage.removeItem('user')
+    localStorage.removeItem('userEmail')
     console.log('User signed out.');
   });
 }

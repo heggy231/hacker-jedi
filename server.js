@@ -239,6 +239,7 @@ app.post('/api/add', (req, res) => {
       city: req.body.city,
       url: req.body.url,
       description: req.body.description,
+      email: req.body.email,
       user_created: null,
     });
     // find the user from req.body
