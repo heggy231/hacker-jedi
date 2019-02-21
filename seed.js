@@ -112,20 +112,20 @@ let apprenticeship_list = [
   },
 ];
 
-let users_list = [
-  {
-    name: "Siri Alay",
-    email: "siri.alay1@gmail.com",
-  },
-  {
-    name: "Heggy Castaneda",
-    email: "heggyy@gmail.com",
-  },
-  {
-    name: "Chike Onuorah",
-    email: "chike.onuorah@gmail.com",
-  },
-];
+// let users_list = [
+//   {
+//     name: "Siri Alay",
+//     email: "siri.alay1@gmail.com",
+//   },
+//   {
+//     name: "Heggy Castaneda",
+//     email: "heggyy@gmail.com",
+//   },
+//   {
+//     name: "Chike Onuorah",
+//     email: "chike.onuorah@gmail.com",
+//   },
+// ];
 
 const Apprenticeship = require('./models/apprenticeship');
 
