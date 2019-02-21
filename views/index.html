@@ -18,15 +18,11 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <!-- Latest compiled JavaScript -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-
-
-
+  
  <!-- Siri added these scripts! -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <!-- APPLICATION SCRIPTS -->
   <script src="/scripts/app.js" defer></script>
+  
 </head>
 
 
@@ -44,7 +40,56 @@
   <h1>Login using Google Auth</h1>
   <!-- Add a Google Sign-In button -->
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+  <script>
+    function onSignIn(googleUser) {
+  //debugger;
+  console.log('googleUser?: ' + googleUser);
+  let profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+   // This is null if the 'email' scope is not present.
+   // access specific variables through local storage.
+   
+   console.log(profile.U3)
+  //put ajax request here
+
+  $.ajax({
+        method: 'GET',
+        url: `/user/${profile.U3}`,
+        success: function( dbUser ) {
+          if (dbUser == null){
+            //ajax post create user
+            $.ajax({
+              method: 'POST',
+              url: '/user',
+              data: {
+                name: profile.getName(),
+                email: profile.U3
+              },
+              success: function(dbuser){
+                localStorage.user = dbUser;
+                console.log(dbuser);
+              },
+              error: function(err){
+                console.log(err)
+              }
+            })
+          }
+          console.log('db user',dbUser);
+          localStorage.user = dbUser
+        },
+        error: function() {
+          alert('There was an error');
+        }
+    })
+}
+  </script>
+
   <a href="#" onclick="signOut();">Sign out</a>
+  <!-- <a href="" id ="signOut">Sign out</a> -->
   <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
   
   <footer>
@@ -53,17 +98,6 @@
     <p>
       ## Credits
     </p>
-    <!-- <ul id="credits">
-      <li><a href="https://github.com/fvcproductions">FVCproductions</a></li>
-      <li><a href="https://modayil.me">Benjamin Modayil</a></li>
-      <li><a href="https://linkedin.com/in/leilanir">Leilani Raranga</a></li>
-      <li><a href="https://www.coltonhurst.com">Colton Hurst</a></li>
-      <li><a href="https://github.com/jschultz21">Julia Schultz</a></li>
-      <li><a href="https://github.com/ibrittanyhill">Brittany Hill</a></li>
-      <li><a href="https://www.linkedin.com/in/chris-miller-6470751/">Chris Miller</a></li>
-      <li><a href="https://github.com/markarce">Mark Arce</a></li>
-      <li><a href="https://github.com/amyyf">Amy Frieson</a></li>
-    </ul> -->
   </footer>
 
 <button id="gmailUserSubmit">Submit</button>
@@ -73,32 +107,19 @@
   <ul id="apprList">
       
   </ul>
-</div>          
+</div>      
+
 <script>
-let profile;
-function onSignIn(googleUser) {
-  // debugger;
-  console.log('googleUser?: ' + googleUser);
-  profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-   // This is null if the 'email' scope is not present.
-   // access specific variables through local storage.
-  //  localStorage.user = profile.U3
-   console.log(profile.U3)
-  //put ajax request here
-  // get request for userInfo
-  // if success save db user to local storage
-  // if fail then post a new user
-  // on success save db user to local storage
-  
-  //  user = localStorage.user
-  //  user._id
-  //return profile;
+  //script won't work when in app.js, but will work here.... hmmmm.... suspicious....
+  function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    localStorage.removeItem('user')
+    console.log('User signed out.');
+  });
 }
 </script>
+
 
 </body>
 </html>

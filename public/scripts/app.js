@@ -1,5 +1,3 @@
-import { userInfo } from "os";
-
 console.log("up and running index.html");
 
 var apprList = [];
@@ -16,10 +14,10 @@ const handleError = function(err) {
 };
 
 
-
 //MOVED THIS TO APP.JS
 
 const handleSuccess = function(json) {
+    apprTarget.empty();
     apprList = json;
     console.log(json);
     for(i=0; i<apprList.length; i++) {
@@ -39,16 +37,20 @@ const handleSuccess = function(json) {
 }
 
 
-    $.ajax({
-        method: 'GET',
-        url: '/api/add',
-        success: handleSuccess,
-        error: handleError
-      });
+$.ajax({
+    method: 'GET',
+    url: '/api/add',
+    success: handleSuccess,
+    error: handleError
+  });
 
-});
+
+
+
+
 
 let profile;
+
 function onSignIn(googleUser) {
   //debugger;
   console.log('googleUser?: ' + googleUser);
@@ -59,76 +61,60 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail());
    // This is null if the 'email' scope is not present.
    // access specific variables through local storage.
-  //  localStorage.user = profile.U3
+   
    console.log(profile.U3)
   //put ajax request here
-  // get request for userInfo
-  // if success save db user to local storage
-  // if fail then post a new user
-  // on success save db user to local storage
-  
-  //  user = localStorage.user
-  //  user._id
-  //return profile;
-}
 
-console.log(profile);
-if(profile !== undefined){
-  console.log(profile);
-}
-
-
-$(document).ready(function() {
-  $("#gmailUserSubmit").click(function(e) {
-  // debugger;
-  console.log("hello");
-  let email = profile.getEmail();
-  console.log(email);
-  let name = profile.getName();
-    $.ajax({
-      method: 'GET',
-      url: '/profile',
-      data: {
-        name: name,
-        email: email,
-      },
-      success: handleSuccess,
-      error: handleError,
-      beforeSend: function () {
-      },
-      complete: function () {
-      },
-    });
-  });
-});
-
-const handleError = (xhr, status, errorThrown) => {
-  console.log(`uh oh!! Error: ${errorThrown}`);
-  // also display on index.html
-  $(".text-center").text("album didn't load correctly!  Server down")
+  $.ajax({
+        method: 'GET',
+        url: `/user/${profie.U3}`,
+        success: function( user ) {
+          console.log('db user',user);
+        },
+        error: function() {
+          alert('There was an error');
+        }
+    })
 }
 
 
-// moved success handling function definition outside the ajax call
-const handleSuccess = function (response) {
-  // debugger;
-  console.log(response);
-  $(".text-center").append(response.body);
-  // $(".text-center").append(json); // this doesn't display
-}  
 
 // $(document).ready(function() {
-//   $("#gmailUserSubmit").click(function() {
-
+// $("#gmailUserSubmit").click(function(e) {
+// // debugger;
+// console.log("hello");
+// let email = profile.getEmail();
+// console.log(email);
+// let name = profile.getName();
+//   $.ajax({
+//     method: 'POST',
+//     url: '/user',
+//     data: {
+//       name: name,
+//       email: email,
+//     },
+//     success: function( response ) {
+//       console.log(response);
+//     },
+//     error: function() {
+//       alert('There was an error');
+//     },
+//     beforeSend: function () {
+//     },
+//     complete: function () {
+//     }
 //   });
 // });
+// });
 
+// $("#signOut").click(function() {
+// function signOut() {
+//   var auth2 = gapi.auth2.getAuthInstance();
+//   auth2.signOut().then(function () {
+//     localStorage.removeItem('user')
+//     console.log('User signed out.');
+//   });
+// }
+// })
 
-function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    localStorage.removeItem('user')
-    console.log('User signed out.');
-  });
-}
-
+}); // end of jquery
