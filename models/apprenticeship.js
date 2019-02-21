@@ -7,7 +7,6 @@ const ApprenticeshipSchema = new Schema({
    url: String,
    description: String,
    duration: String,
-   //need to create user id here
    email: String,
    user_created: { type: Schema.ObjectId, ref: 'User' }
 });

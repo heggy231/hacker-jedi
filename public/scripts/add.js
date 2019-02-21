@@ -78,15 +78,22 @@ const getUserID = function(json) {
         success: getUserID,
         error: handleError
     })
-
-
+  
 
   $('#apprForm').on('submit', function(e) {
     e.preventDefault();
+
+    let formData = $(this).serialize();
+    
+    formData.email = localStorage.userEmail;
+    console.log("watermelon");
+    console.log(formData);
+    console.log(formData += `&email=${localStorage.userEmail}`);
+
     $.ajax({
       method: 'POST',
       url: '/api/add',
-      data: $(this).serialize(),
+      data: formData,
       success: addSuccess,
       error: handleError
   });
@@ -172,7 +179,7 @@ function addSuccess(json) {
     apprList.push(json);
    
     console.log(apprList);
-    console.log(json);
+    console.log(json.email);
     apprTarget.append(`
         <div>
         <div class= "displayed-input"> 

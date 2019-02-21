@@ -22,6 +22,7 @@
  <!-- Siri added these scripts! -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="/scripts/app.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   
 </head>
 
@@ -42,9 +43,13 @@
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
   <script>
+
+    //this function only executes when user signs in
     function onSignIn(googleUser) {
-  //debugger;
+
   console.log('googleUser?: ' + googleUser);
+
+  //this stores the googleUser's basic data in an object called profile
   let profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
@@ -53,21 +58,24 @@
    // This is null if the 'email' scope is not present.
    // access specific variables through local storage.
    
+   //this gets the email. property name of email is U3
    console.log(profile.U3)
+   let userEmail = profile.U3;
   //put ajax request here
 
   $.ajax({
         method: 'GET',
-        url: `/user/${profile.U3}`,
-        success: function( dbUser ) {
-          if (dbUser == null){
+        url: `/user/${userEmail}`,
+        success: 
+        function( dbUser ) {
+          if (dbUser === null){
             //ajax post create user
             $.ajax({
               method: 'POST',
               url: '/user',
               data: {
                 name: profile.getName(),
-                email: profile.U3
+                email: userEmail
               },
               success: function(dbuser){
                 //store in local storage if you
@@ -84,7 +92,6 @@
           localStorage.userEmail = dbUser.email;
           console.log("HERe is IZ:" + dbUser.email);
           console.log('db user',dbUser);
-         // localStorage.user = dbUser
         },
         error: function() {
           alert('There was an error');
