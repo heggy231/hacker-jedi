@@ -38,14 +38,13 @@ app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-
 app.get('/add', function addPage(req, res) {
     res.sendFile(__dirname + '/views/add.html');
   });
 
-  app.get('/profile', function addPage(req, res) {
-    res.sendFile(__dirname + '/views/profile.html');
-  });
+app.get('/profile', function addPage(req, res) {
+  res.sendFile(__dirname + '/views/profile.html');
+});
 
 
 /*

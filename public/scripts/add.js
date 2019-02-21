@@ -13,6 +13,7 @@ const handleError = function(err) {
     console.log('error: ' + err);
 };
 
+// if user is not loggedIn you can't go to other pages
 if(localStorage.userEmail === undefined) {
     $("#signIn").css("display", "block");
     $("#wrapper").css("display", "none");
@@ -28,7 +29,7 @@ const handleSuccess = function(json) {
     apprList = json;
     //console.log(User._id),
     console.log(json);
-    for(i=0; i<apprList.length; i++) {
+    for(i = 0; i < apprList.length; i++) {
         if(localStorage.userEmail === `${apprList[i].email}`) {
         //if user_created (for specific appr) === current_userID, then display the appr
         apprTarget.append(
@@ -72,16 +73,14 @@ const getUserID = function(json) {
     console.log(localStorage.userEmail)
 }
 
-    $.ajax({
-        method:'GET',
-        url: '/user',
-        success: getUserID,
-        error: handleError
-    })
+$.ajax({
+    method:'GET',
+    url: '/user',
+    success: getUserID,
+    error: handleError
+})
 
-
-
-  $('#apprForm').on('submit', function(e) {
+$('#apprForm').on('submit', function(e) {
     e.preventDefault();
     $.ajax({
       method: 'POST',
@@ -92,18 +91,16 @@ const getUserID = function(json) {
   });
 });
 
-
-  
- apprTarget.on('click', '.delete', function() {
-  $(this).parent().remove();
-    console.log('clicked delete button to', '/api/add/'+ $(this).attr('data-id'));
-    $.ajax({
-      method: 'DELETE',
-      url: '/api/add/' + $(this).attr('data-id'),
-      success: console.log('deleted this: ' + $(this).attr('data-id')),
-      error:  handleError
-    });
+apprTarget.on('click', '.delete', function() {
+$(this).parent().remove();
+  console.log('clicked delete button to', '/api/add/'+ $(this).attr('data-id'));
+  $.ajax({
+    method: 'DELETE',
+    url: '/api/add/' + $(this).attr('data-id'),
+    success: console.log('deleted this: ' + $(this).attr('data-id')),
+    error:  handleError
   });
+});
 
 
   //edit

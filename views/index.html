@@ -45,13 +45,13 @@
   //script won't work when in app.js, but will work here.... hmmmm.... suspicious....
 
   function onSignIn(googleUser) {
-    console.log('fired');
-    // debugger;
+    console.log('fired onSignedIn GOauth');
+    debugger;
     console.log('googleUser?: ' + googleUser);
     let profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
     // This is null if the 'email' scope is not present.
     // access specific variables through local storage.
@@ -68,6 +68,7 @@
       url: `user/${profile.getEmail()}`,
       // dbUser is the obj we get from backend
       success: function( dbUser ) {
+        console.log(`are you getting inside of ajax first call?`);
         console.log(`dbUser is what?  ${dbUser}`);
         // if user is not saved inside of database
         //  then 
@@ -82,7 +83,6 @@
               email: profile.getEmail(),
             },
             success: function(dbUser){
-              debugger;
               // when user login using googleOauth> memory gets saved
               //  inside of localStorage and .user has the email address
               localStorage.user = dbUser;
@@ -100,8 +100,8 @@
         //  then redirect to http://localhost:3000/add"
         // if user is on heroku 
         //  then https://evening-forest-40933.herokuapp.com/add
-        // location.href= "http://localhost:3000/add";
-        location.href= "/add";
+        location.href= "add";
+        // location.href= "/add";
       }, // end of ajax success 
       error: function() {
         alert('There was an error');
