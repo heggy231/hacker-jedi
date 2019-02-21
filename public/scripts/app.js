@@ -1,3 +1,5 @@
+import { userInfo } from "os";
+
 console.log("up and running index.html");
 
 var apprList = [];
@@ -57,10 +59,13 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail());
    // This is null if the 'email' scope is not present.
    // access specific variables through local storage.
-   localStorage.user = profile.U3
+  //  localStorage.user = profile.U3
    console.log(profile.U3)
   //put ajax request here
-
+  // get request for userInfo
+  // if success save db user to local storage
+  // if fail then post a new user
+  // on success save db user to local storage
   
   //  user = localStorage.user
   //  user._id
@@ -81,18 +86,14 @@ $(document).ready(function() {
   console.log(email);
   let name = profile.getName();
     $.ajax({
-      method: 'POST',
+      method: 'GET',
       url: '/profile',
       data: {
         name: name,
         email: email,
       },
-      success: function( response ) {
-        console.log(response);
-      },
-      error: function() {
-        alert('There was an error');
-      },
+      success: handleSuccess,
+      error: handleError,
       beforeSend: function () {
       },
       complete: function () {
@@ -100,6 +101,21 @@ $(document).ready(function() {
     });
   });
 });
+
+const handleError = (xhr, status, errorThrown) => {
+  console.log(`uh oh!! Error: ${errorThrown}`);
+  // also display on index.html
+  $(".text-center").text("album didn't load correctly!  Server down")
+}
+
+
+// moved success handling function definition outside the ajax call
+const handleSuccess = function (response) {
+  // debugger;
+  console.log(response);
+  $(".text-center").append(response.body);
+  // $(".text-center").append(json); // this doesn't display
+}  
 
 // $(document).ready(function() {
 //   $("#gmailUserSubmit").click(function() {

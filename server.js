@@ -52,6 +52,8 @@ app.get('/profile', function addPage(req, res) {
   res.redirect(__dirname + '/views/profile.html');
 });
 
+// get request finding a one user
+app.get('/api/get')
 
 /*
  * JSON API Endpoints

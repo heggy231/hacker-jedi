@@ -21,13 +21,12 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
 
-  <!-- APPLICATION SCRIPTS -->
-  <script src="/scripts/app.js"></script>
+
 
  <!-- Siri added these scripts! -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <script src="/scripts/app.js"></script>
-  
+  <!-- APPLICATION SCRIPTS -->
+  <script src="/scripts/app.js" defer></script>
 </head>
 
 
@@ -75,6 +74,31 @@
       
   </ul>
 </div>          
+<script>
+let profile;
+function onSignIn(googleUser) {
+  // debugger;
+  console.log('googleUser?: ' + googleUser);
+  profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+   // This is null if the 'email' scope is not present.
+   // access specific variables through local storage.
+  //  localStorage.user = profile.U3
+   console.log(profile.U3)
+  //put ajax request here
+  // get request for userInfo
+  // if success save db user to local storage
+  // if fail then post a new user
+  // on success save db user to local storage
+  
+  //  user = localStorage.user
+  //  user._id
+  //return profile;
+}
+</script>
 
 </body>
 </html>
