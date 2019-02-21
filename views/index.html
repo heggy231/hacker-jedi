@@ -133,7 +133,7 @@
 
 <script>
   //script won't work when in app.js, but will work here.... hmmmm.... suspicious....
-
+  // google oAuth log out function
   $('#mainSignOut').click(function() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
