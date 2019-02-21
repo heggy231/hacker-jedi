@@ -38,17 +38,30 @@ const Apprenticeship = require('./models/apprenticeship');
 // i.e. `/images`, `/scripts`, `/styles`
 
 app.get('/', (req, res ) => {
-  res.sendFile('views/index.html' , { root : __dirname});
+  res.sendFile('views/index.html' , { root: __dirname});
 });
 
-app.get('/api/apprenticeships', (req, res ) => {
-  Apprenticeship.find({}, (err, apprenticeships) => {
-    if (err) {
-        return console.log(err);
-    }
-    res.json(apprenticeships);
+app.get('/api/apprenticeships', (req, res) => {
+  Apprenticeship.find({}).populate('user_created').exec((err, apprenticeships)=>{
+    console.log(apprenticeships, 'UUUUUUUUUUUUU');
+     let data = {}
+     data.items = [];
+     let items = data.items;
+     for (let i = 0; i < apprenticeships.length; i++) {
+       let app = apprenticeships[i];
+       let entry =  {};
+       entry.company =  app.company;
+       entry.description = app.description;
+       entry.url = app.url;
+       entry.city = app.city;
+       entry.name = app.user_created.name;
+       entry.email = app.user_created.email;
+       data.items.push(entry);
+     }
+     res.json(data);
   });
 });
+    
 
 app.get('/api/apprenticeships/:id', (req, res ) => {
   let id = req.params.id;

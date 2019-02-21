@@ -10,6 +10,7 @@ const ApprenticeshipSchema = new Schema({
    user_created: { type: Schema.ObjectId, ref: 'User' }
 });
 
+
 const Apprenticeship = mongoose.model('Apprenticeship', ApprenticeshipSchema );
 
 module.exports  = Apprenticeship;
