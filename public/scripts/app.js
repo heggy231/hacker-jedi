@@ -52,7 +52,7 @@ $.ajax({
 let profile;
 
 function onSignIn(googleUser) {
-  //debugger;
+  // debugger;
   console.log('googleUser?: ' + googleUser);
   profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -67,7 +67,7 @@ function onSignIn(googleUser) {
 
   $.ajax({
         method: 'GET',
-        url: `/user/${profie.U3}`,
+        url: `/user/${profile.U3}`,
         success: function( user ) {
           console.log('db user',user);
         },

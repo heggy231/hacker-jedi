@@ -43,17 +43,10 @@ app.get('/add', function addPage(req, res) {
     res.sendFile(__dirname + '/views/add.html');
   });
 
-app.get('/profile', function addPage(req, res) {
-  res.sendFile(__dirname + '/views/profile.html');
-});
+  app.get('/profile', function addPage(req, res) {
+    res.sendFile(__dirname + '/views/profile.html');
+  });
 
-// when user clicks submit button redict to profile page
-app.get('/profile', function addPage(req, res) {
-  res.redirect(__dirname + '/views/profile.html');
-});
-
-// get request finding a one user
-app.get('/api/get')
 
 /*
  * JSON API Endpoints
@@ -83,6 +76,13 @@ app.get('/api', (req, res) => {
   })
 });
 
+
+// app.get('/profile', (req, res) => {
+
+// })
+
+
+
 app.get('/user', (req, res) => {
     db.User.find({}, function (err, user) {
         if (err) {
@@ -97,7 +97,7 @@ app.get('/user', (req, res) => {
 app.delete('/user/:id', function (req, res) {
     console.log('deleted user ID is ', req.params);
    db.User.findOneAndDelete
-    ( {_id: req.params.id},
+    ( {_id: req.params.id}, 
     (err, deletedUser) => {
       if (err) {
         console.log("the error is " + err);
@@ -107,7 +107,11 @@ app.delete('/user/:id', function (req, res) {
   })
 
 
-
+//  THIS CODE REMOVES ALL USERS
+//   app.delete('/user', function (req, res) {
+//   console.log('deleted all');
+//  db.User.collection.remove()
+// })
 
 
 app.get('/api/add', (req, res) => {
@@ -119,16 +123,35 @@ app.get('/api/add', (req, res) => {
       });
 })
 
+// ######### User login route ###########
 
-// app.post('/api/add', (req, res) => {
-//     db.Apprenticeship(req.body).save(function(err, apprenticeship){
-//           if (err) {
-//             console.log("error: " + err);
-//           }
-//           console.log("created " + apprenticeship);
-//           res.json(apprenticeship);
-//         });
-//   })
+// Is user in the db?
+app.get('/user/:email', (req, res) => {
+  let email = req.params.email
+  db.User.findOne({email: email})
+    .exec((err,foundUser)=>{
+      if (err){
+        res.send(err)
+      }
+    // redirect to a new page
+      res.json(foundUser)
+      // return res.redirect('/add');
+    })
+});
+
+// 
+app.post('/user', (req, res) => {
+  let newUser = req.body;
+  db.User.create(newUser,(err,createdUser)=>{
+    if (err){
+      res.send(err);
+    }
+    res.json(createdUser);
+  })
+
+});
+
+
 
 
 //   app.post('/profile/add', (req, res) => {
@@ -151,7 +174,7 @@ app.get('/api/add', (req, res) => {
 //   })
 
 
-
+  
 //     let  = {
 //       name: req.body.name,
 //       email: req.body.email,
@@ -173,37 +196,37 @@ app.get('/api/add', (req, res) => {
 //           company: req.body.company,
 //        //userCreated?
 //         });
-
+  
 //     User.create(newUser, (err, userCreated)=> {
 //       if (err) {
 //         return console.log(err);
 //       }
-
+  
 //      userCreated.save((err, newUser)=>{
-
+  
 //         if (err){
-
+  
 //           return console.log(err);
-
+  
 //          }
-
+  
 //         let apprenticeship = {
 //           company: req.body.company,
 //           url: req.body.url,
 //           description: req.body.description,
 //           city: req.body.city
 //          }
-
+    
 //         apprenticeship['user_created'] = userCreated._id;
-
-//         Apprenticeship.create(apprenticeship, (err, newAppr) => {
-
+  
+//         Apprenticeship.create(apprenticeship, (err, newAppr) => { 
+                         
 //           newAppr.save((err)=>{
-
+  
 //             if (err) {
-
+  
 //                return console.log(err);
-
+  
 //             } else {
 //               res.json(newAppr);
 //             }
@@ -242,17 +265,17 @@ app.post('/api/add', (req, res) => {
       } else {
         createApprenticeshipWithUser(newApprenticeship, user, res);
       }
-    });
+    }); 
     // save new Apprentice
-  });
-
+  }); 
+  
   // create Apprenticeship With new User function
   function createApprenticeshipWithUser(apprenticeship, user, res) {
     // add this user to the apprenticeship
     apprenticeship.user_created = user;
     // save new apprenticeship to database
     apprenticeship.save(function(err, book) {
-      if (err) {
+      if (err) { 
         return console.log("save error: " + err)
       }
       console.log("saved ", apprenticeship.company);
@@ -264,7 +287,7 @@ app.post('/api/add', (req, res) => {
 
 
 
-
+  
 app.put('/api/add/:id', function(req,res){
     // ^^^ get the id of the apprenticeship
     //need to also get the user id from the frontend (login)
@@ -275,11 +298,6 @@ app.put('/api/add/:id', function(req,res){
       if (err) {
         console.log("the error is " + err);
       }
-    //    apprenticeship.user_created.email = req.body.email;
-    //    apprenticeship.company = requ.body.company;
-    //    apprenticeship.url = requ.body.url;
-    //    apprenticeship.city = req.body.city;
-    //    apprenticeship.description = req.body.description;
       res.json(apprenticeship);
     });
   });
@@ -313,7 +331,7 @@ app.put('/api/add/:id', function(req,res){
 app.delete('/api/add/:id', function (req, res) {
     console.log('deleted apprenticeship is ', req.params);
    db.Apprenticeship.findOneAndDelete
-    ( {_id: req.params.id},
+    ( {_id: req.params.id}, 
     (err, deletedApprenticeship) => {
       if (err) {
         console.log("the error is " + err);
@@ -321,7 +339,7 @@ app.delete('/api/add/:id', function (req, res) {
        res.json(deletedApprenticeship);
      });
   })
-
+  
 
 
 

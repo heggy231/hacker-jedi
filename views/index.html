@@ -43,33 +43,40 @@
 
   <script>
     function onSignIn(googleUser) {
-  //debugger;
-  console.log('googleUser?: ' + googleUser);
-  let profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-   // This is null if the 'email' scope is not present.
-   // access specific variables through local storage.
-   
-   console.log(profile.U3)
-  //put ajax request here
+      console.log('fired');
+      // debugger;
+      console.log('googleUser?: ' + googleUser);
+      let profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+      // This is null if the 'email' scope is not present.
+      // access specific variables through local storage.
+      // Go to console googleUser.getBasicProfile().U3 == > email "heggyy@gmail.com"
 
-  $.ajax({
+      // profile.U3 is googleUser.getBasicProfile().U3 which is an email of the user
+      console.log(`Gmail email: ${profile.U3}`);
+      console.log(`Gmail email: ${profile.getEmail()}`);
+      console.log(`Gmail Name: ${profile.getName()}`);
+      //put ajax request here
+
+      $.ajax({
         method: 'GET',
-        url: `/user/${profile.U3}`,
+        url: `user/${profile.getEmail()}`,
+      // dbUser is the obj we are sending to 
         success: function( dbUser ) {
-          if (dbUser == null){
+          if (dbUser === null){
             //ajax post create user
             $.ajax({
               method: 'POST',
               url: '/user',
+              //  passing in user data from Oauth
               data: {
                 name: profile.getName(),
-                email: profile.U3
+                email: profile.getEmail(),
               },
-              success: function(dbuser){
+              success: function(dbUser){
                 localStorage.user = dbUser;
                 console.log(dbuser);
               },
@@ -79,13 +86,16 @@
             })
           }
           console.log('db user',dbUser);
-          localStorage.user = dbUser
+          localStorage.user = dbUser;
+          // redirecting to add page
+          location.href= "http://localhost:3000/add";
         },
         error: function() {
           alert('There was an error');
         }
-    })
-}
+      }); // end of ajax
+      
+    }
   </script>
 
   <a href="#" onclick="signOut();">Sign out</a>
