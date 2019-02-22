@@ -83,16 +83,18 @@
       // Loop through all list items, and hide those who don't match the search query
       for (var i = 0; i < div.length; i++) {
         var li = div[i].getElementsByClassName("description")[0];
-       // console.log(li);
-             //a = li[i].getElementsByTagName("a")[0];
               var txtValue = li.textContent || li.innerText;
               if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                  div[i].style.display = "";
-                  } else {
+                  div[i].style.display = "block";
+                  } 
+                  else {
                   div[i].style.display = "none";
                   }
             }
        }
+
+
+
 
 
 
