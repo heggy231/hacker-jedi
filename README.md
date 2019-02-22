@@ -25,3 +25,5 @@ https://www.youtube.com/watch?v=i7of02icPyQ
 [ X ]Randall Degges - Everything You Ever Wanted to Know About Web Authentication in Node // not useful
 
 - https://developers.google.com/identity/branding-guidelines
+- really helpful command for git https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli
+- heroku shell command https://devcenter.heroku.com/articles/heroku-cli-commands
