@@ -169,11 +169,15 @@
     console.log('User signed out.');
   });
 }
-
-
 </script>
 
-
+<script> 
+  $(document).ready(function(){
+    $("#credits").click(function(){
+      $("#credits-panel").slideToggle("slow");
+    });
+  });
+</script>
 
 <footer>
     <p>&copy; 2019 Siri, Chike, Heggy</p>
