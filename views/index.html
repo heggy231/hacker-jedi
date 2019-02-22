@@ -55,40 +55,50 @@
 
 
 
- <div class="search-container"> 
-  <form class="search-form">
-      <input class="search" type="text" placeholder="Search by Company, Keyword, Etc."> </input>
+    <div class="search-container">
+   
 
-      <input class="city-search" type="text" placeholder="City"> </input>
-      <input type="submit" value="SEARCH" class="submit-button"> </input>  
-  </form>
-  <div class="apprenticeship-container"> 
+        <form class="search-form">
+
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+           <!-- <input class="search" type="text" placeholder="Search by Company, Keyword, Etc."> </input>
+
+            <input class="city-search" type="text" placeholder="City"> </input>
+            <input type="submit" value="SEARCH" class="submit-button"> </input>   -->
+        </form>
+
+        <div class="apprenticeship-container"> 
     
 
-   </div>
- </div>
+       </div>
+
+    </div>
 
 
  <script>
     function myFunction() {
-      // Declare variables
-      var input, filter, ul, li, a, i, txtValue;
-      input = document.getElementById('myInput');
-      filter = input.value.toUpperCase();
-      ul = document.getElementById("myUL");
-      li = ul.getElementsByTagName('li');
+
+      var input = document.getElementById('myInput');
+      var filter = input.value.toUpperCase();
+      var ul = document.getElementsByClassName("myUL")[0];
+      var div = ul.getElementsByClassName("displayed-input");
+
+      //li = ul.getElementsByTagName('li');
     
       // Loop through all list items, and hide those who don't match the search query
-      for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          li[i].style.display = "";
-        } else {
-          li[i].style.display = "none";
-        }
-      }
-    }
+      for (var i = 0; i < div.length; i++) {
+        var li = div[i].getElementsByTagName(li)[0];
+        console.log(li);
+             //a = li[i].getElementsByTagName("a")[0];
+              var txtValue = li.textContent || li.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  div[i].style.display = "";
+                  } else {
+                  div[i].style.display = "none";
+                  }
+            }
+       }
+ 
     
 
 
@@ -155,7 +165,8 @@
   <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
   
 <div>
-  <ul id="apprList">
+  <ul id="apprList" class="myUL">
+        
       
   </ul>
 </div>      
