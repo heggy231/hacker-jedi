@@ -6,7 +6,6 @@ var apprTarget;
 //JQUERY
 $(document).ready(function(){
     console.log("jquery is working");
-    
     apprTarget = $('#apprList'); 
 
 const handleError = function(err) {

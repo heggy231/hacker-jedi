@@ -339,7 +339,21 @@ app.delete('/api/add/:id', function (req, res) {
      });
   })
   
-
+// req.body < keyword come in as a form
+app.get('api/apprenticeships/keyword', (req, res) => {
+  res.json({Hello: "world"});
+  // Apprenticeship.find( 
+  //   {
+  //    city: {$regex: req.body.input, $options: 'i'}, 
+  //    description: {$regex: req.body.input, $options: 'i'}, 
+  //    company: {$regex: req.body.input, $options: 'i'},
+  //   }, (err, data) => {
+  //     if(err) {
+  //       return console.log(err);
+  //     }
+  //     console.log(data);
+  // });
+});
 
 
 app.listen(process.env.PORT || 3000, ()=> {
