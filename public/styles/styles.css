@@ -1,0 +1,225 @@
+header {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+h1 {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+}
+
+.login a, .login span {
+    color: #FF4C3B;
+
+}
+
+
+a {
+    text-decoration: none !important;
+}
+
+label, .dinput {
+    color: #FF4C3B;
+}
+
+.hacker-jedi {
+  color: #FF4C3B;
+  font-family: 'Philosopher', sans-serif;
+}
+
+.add {
+  color: #FF4C3B;
+  margin-right: 3em;
+  margin-top: 7%;
+}
+
+.login {
+    color: #4285F4;
+    margin-left: 20px;
+    display: inline-block;
+  
+}
+
+.intro{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-left: 3%;
+    padding-right: 7%;
+}
+
+.search-form {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    margin-bottom: 60px;
+}
+
+.search {
+    flex: 1;
+}
+
+.city-search {
+    flex: 1;
+    margin-left: 10px;
+    
+}
+
+input {
+    margin: 6px;
+}
+
+#dropdown {
+    margin: 6px;
+}
+
+.submit-button {
+    margin: 6px;
+    background-color:#FF4C3B;
+    color: white;
+    border-radius: 3px;
+    border: none;
+}
+.search-container {
+    
+}
+.apprenticeship-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.apprenticeship {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid grey;
+    width: 60%;
+    transform:translate(25%,0%);
+}
+
+.first-row, .second-row, .third-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.third-row {
+  margin-top: 30px;
+}
+
+.city {
+  display: inline-block;
+  font-family: 'Karla', sans-serif;  
+  font-weight: bold;
+  color: #666666;
+}
+
+.apprenticeship-name, .contact  {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF4C3B;
+    font-family: 'Karla', sans-serif;  
+}
+
+.app_email {
+  font-weight: normal;
+  font-size: 13px;
+  color: #C0C0C0;
+  font-weight: normal;
+}
+
+.duration {
+    font-weight: bold;
+    font-size: 13px;
+    font-family: 'Karla', sans-serif;
+}
+
+.edit {
+    background-color:#FF4C3B;
+    color: white;
+    padding: 6px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+p {
+  font-family: 'Karla', sans-serif;  
+  color: #666666;
+}
+
+.add-button {
+    display: inline;
+}
+
+.login-add {
+   display: flex;
+   align-items: baseline;
+}
+
+.signed-in-as, .user{
+    display: inline;
+}
+
+.user-status {
+  margin-left: 81%;
+  display: none;
+}
+
+.adding {
+  color: #FF4C3B;
+  margin-top: 12px;
+  margin-left: 151px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 12%;
+}
+
+.tower1 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 3%;
+    
+}
+
+.tower2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 3%;
+}
+
+#name, #location, #url, #duration, #company {
+    padding: 5px;
+    margin-bottom: 40px;
+}
+
+.description {
+    height: 100px;
+    transform:translate(25%,0%);
+    margin: 0px;
+}
+
+.descrinput {
+    height: 200px;
+    width: 50%;
+}
+
+.dinput {
+    font-weight: bold;
+}
+
+.g-signin2 {
+    display: inline-block;
+    margin-right: 5em;
+    
+}
