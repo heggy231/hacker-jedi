@@ -7,9 +7,9 @@ https://git.generalassemb.ly/sf-wdi-45/how-to-heroku/blob/master/README.md
 
 - git ignore file: added **/node_modules
 
-- heroku work process:
+### heroku work process:
 git push heroku heggy:master
-when pushing new code to heroku from heggy branch
+// when pushing new code to heroku from heggy branch
 heroku run bash // running heroku shell command
 cat server.js // does heroku see my latest change? check if change is there
 
@@ -22,6 +22,6 @@ https://evening-forest-40933.herokuapp.com/
 
 - try Web Authentication
 https://www.youtube.com/watch?v=i7of02icPyQ
-Randall Degges - Everything You Ever Wanted to Know About Web Authentication in Node
+[ X ]Randall Degges - Everything You Ever Wanted to Know About Web Authentication in Node // not useful
 
 - https://developers.google.com/identity/branding-guidelines
