@@ -31,8 +31,9 @@ label, .dinput {
 
 .add {
   color: #FF4C3B;
-  margin-right: 3em;
+  /* margin-right: 3em; */
   margin-top: 7%;
+  margin-right: 20px;
 }
 
 .login {
@@ -214,12 +215,14 @@ p {
     width: 50%;
 }
 
-.dinput {
+.input {
     font-weight: bold;
 }
 
 .g-signin2 {
     display: inline-block;
     margin-right: 5em;
-    
+    position: absolute;
+    right: 354px;
+    top: 31px;
 }
