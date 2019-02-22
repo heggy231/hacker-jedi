@@ -6,7 +6,7 @@
 
 ## Technologies Used
 
-*JavaScript (**ES6**)
+*JavaScript(ES6)
 *jQuery
 *JSON
 *HTML5
@@ -21,7 +21,7 @@
 *RESTFUL API
 *Heroku
 *Responsive Design
-*Authentication: **Google OAuth**
+*Authentication: Google OAuth
 *ERDs (Reference)
 *Wireframing
 *Agile Development/Srum
@@ -35,7 +35,7 @@
 
 ## Planned Features
 
-*What changes would you make to your project if you continue to work on it? (bullet points)*
+*Put reminder to apply on ADD to google calendar|iCal button
 
 ---
 
