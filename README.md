@@ -6,36 +6,34 @@
 
 ## Technologies Used
 
-*JavaScript(ES6)
-*jQuery
-*JSON
-*HTML5
-*CSS3
-*ExpressJS
-*MongoDB
-*AJAX
-*Node.js
-*Sails.js
-*Bootstrap
-*Flexbox
-*RESTFUL API
-*Heroku
-*Responsive Design
-*Authentication: Google OAuth
-*ERDs (Reference)
-*Wireframing
-*Agile Development/Srum
+- JavaScript(ES6)
+- jQuery
+- JSON
+- HTML5
+- CSS3
+- ExpressJS
+- MongoDB
+- AJAX
+- Node.js
+- Flexbox
+- RESTFUL API
+- Heroku
+- Responsive Design
+- Authentication: Google OAuth
+- ERDs (Referenced Data)
+- Wireframing
+- Agile Development/Srum/Sprints
 
 ## Existing Features
 
-*Documented API Endpoints (`/api` describes all the available endpoints)
-*
+- Documented API Endpoints (`/api` describes all the available endpoints)
+- 
 
 
 
 ## Planned Features
 
-*Put reminder to apply on ADD to google calendar|iCal button
+- Put reminder to apply on ADD to google calendar|iCal button
 
 ---
 
