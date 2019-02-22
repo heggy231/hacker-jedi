@@ -5,13 +5,11 @@ var apprTarget;
 
 //JQUERY
 $(document).ready(function(){
-    console.log("jquery is working index.html");
-    
-    apprTarget = $('#apprList'); 
-
-const handleError = function(err) {
-    console.log('error: ' + err);
-};
+  console.log("jquery is working index.html");
+  apprTarget = $('#apprList'); 
+  const handleError = function(err) {
+      console.log('error: ' + err);
+  };
 
 
 

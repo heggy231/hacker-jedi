@@ -18,7 +18,6 @@ app.use(function(req, res, next) {
 /************
  * DATABASE *
  ************/
-
 const db = require('./models');
 
 /**********
@@ -43,9 +42,9 @@ app.get('/add', function addPage(req, res) {
     res.sendFile(__dirname + '/views/add.html');
   });
 
-  app.get('/profile', function addPage(req, res) {
-    res.sendFile(__dirname + '/views/profile.html');
-  });
+app.get('/profile', function addPage(req, res) {
+  res.sendFile(__dirname + '/views/profile.html');
+});
 
 
 /*
@@ -54,7 +53,6 @@ app.get('/add', function addPage(req, res) {
 
 app.get('/api', (req, res) => {
   // all api endpoints are in the json object below
-
   res.json({
     appTitle: "HackerJedi!",
     appContributors: "Chike, Siri, and Heggy",
@@ -67,7 +65,7 @@ app.get('/api', (req, res) => {
       {method: "GET", path: "/add", description: "User adds new apprenticeship."},
       //server side
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/apprenticeships", despcription: "View all apprenticeships here." },
+      {method: "GET", path: "/api/apprenticeships", description: "View all apprenticeships here." },
       {method: "GET", path: "api/apprenticeships/:keyword", description: "Search keyword"},
       {method: "POST", path: "/api/apprenticeships", description: "Create new apprenticeship/opportunity, post it to this api"},
       {method: "PUT", path: "/api/apprenticeships/:id", description: "Edit an apprenticeship and update it"},
@@ -151,49 +149,49 @@ app.get('/user/:email', (req, res) => {
 // Creat new apprenticeship
 app.post('/api/add', (req, res) => {
     // create new apprenticeship with form data ('req.body')
-    console.log("body is ", req.body);
-    let newApprenticeship = new db.Apprenticeship({
-      company: req.body.company,
-      city: req.body.city,
-      url: req.body.url,
-      description: req.body.description,
-      email: req.body.email,
-      user_created: null,
-    });
-    // find the user from req.body
-    db.User.findOne({email: req.body.email}, (err, user) => {
-      if (err) {
-        return console.log(err);
-      }
-      // if that user doesn't exist yet, create a new one
-      if (user === null) {
-        db.User.create({name: req.body.user, email: req.body.email}, (err, newUser) => {
-          if (err) {
-            return console.log(err);
-          }
-          createApprenticeshipWithUser(newApprenticeship, newUser, res);
-        });
-      } else {
-        createApprenticeshipWithUser(newApprenticeship, user, res);
-      }
-    }); 
-    // save new Apprentice
+  console.log("body is ", req.body);
+  let newApprenticeship = new db.Apprenticeship({
+    company: req.body.company,
+    city: req.body.city,
+    url: req.body.url,
+    description: req.body.description,
+    email: req.body.email,
+    user_created: null,
+  });
+  // find the user from req.body
+  db.User.findOne({email: req.body.email}, (err, user) => {
+    if (err) {
+      return console.log(err);
+    }
+    // if that user doesn't exist yet, create a new one
+    if (user === null) {
+      db.User.create({name: req.body.user, email: req.body.email}, (err, newUser) => {
+        if (err) {
+          return console.log(err);
+        }
+        createApprenticeshipWithUser(newApprenticeship, newUser, res);
+      });
+    } else {
+      createApprenticeshipWithUser(newApprenticeship, user, res);
+    }
   }); 
+  // save new Apprentice
+}); 
   
-  // create Apprenticeship With new User function
-  function createApprenticeshipWithUser(apprenticeship, user, res) {
-    // add this user to the apprenticeship
-    apprenticeship.user_created = user;
-    // save new apprenticeship to database
-    apprenticeship.save(function(err, book) {
-      if (err) { 
-        return console.log("save error: " + err)
-      }
-      console.log("saved ", apprenticeship.company);
-      // send back the apprenticeship
-      res.json(apprenticeship);
-    });
-  }
+// create Apprenticeship With new User function
+function createApprenticeshipWithUser(apprenticeship, user, res) {
+  // add this user to the apprenticeship
+  apprenticeship.user_created = user;
+  // save new apprenticeship to database
+  apprenticeship.save(function(err, book) {
+    if (err) { 
+      return console.log("save error: " + err)
+    }
+    console.log("saved ", apprenticeship.company);
+    // send back the apprenticeship
+    res.json(apprenticeship);
+  });
+}
 
 
 

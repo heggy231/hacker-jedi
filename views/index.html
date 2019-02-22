@@ -52,38 +52,25 @@
 
 
  <div class= "container"> 
-
-
-
-    <div class="search-container">
-   
-
+    <div class="search-container"> 
         <form class="search-form">
-
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
            <!-- <input class="search" type="text" placeholder="Search by Company, Keyword, Etc."> </input>
 
             <input class="city-search" type="text" placeholder="City"> </input>
             <input type="submit" value="SEARCH" class="submit-button"> </input>   -->
         </form>
-
         <div class="apprenticeship-container"> 
-    
-
        </div>
-
     </div>
-
 
  <script>
 
+// Search Function
     function myFunction() {
-
       var input = document.getElementById('myInput');
       var filter = input.value.toUpperCase();
       var ul = document.getElementsByClassName("myUL")[0];
-
-
       var div = ul.getElementsByClassName("displayed-input");
       //console.log(div)
       //array of all divs that contain the appr.
@@ -111,7 +98,6 @@
       if(indexNumMatch > -1){
         console.log(str);
       }
-
     }
 
 
