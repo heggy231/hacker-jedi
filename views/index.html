@@ -105,7 +105,15 @@
             }
        }
  
-    
+    function search () {
+      var str = "Visit W3Schools!"; 
+      var indexNumMatch = str.search("W3Schools");
+      if(indexNumMatch > -1){
+        console.log(str);
+      }
+
+    }
+
 
 
 
@@ -197,8 +205,22 @@
 </script>
 
 <footer>
-    <p>&copy; 2019 Siri, Chike, Heggy</p>
-  </footer>
+  <!--   jquery panel slide toggle for credits  -->
+    <div id="credits"><p> &copy; 2019 Siri, Chike, Heggy | Click to see credits<p></div>
+    <div id="credits-panel">
+      <ul>
+        <li><a href="https://github.com/fvcproductions">FVCproductions</a></li>
+        <li><a href="https://modayil.me">Benjamin Modayil</a></li>
+        <li><a href="https://linkedin.com/in/leilanir">Leilani Raranga</a></li>
+        <li><a href="https://www.coltonhurst.com">Colton Hurst</a></li>
+        <li><a href="https://github.com/jschultz21">Julia Schultz</a></li>
+        <li><a href="https://github.com/ibrittanyhill">Brittany Hill</a></li>
+        <li><a href="https://www.linkedin.com/in/chris-miller-6470751/">Chris Miller</a></li>
+        <li><a href="https://github.com/markarce">Mark Arce</a></li>
+        <li><a href="https://github.com/amyyf">Amy Frieson</a></li>
+      </ul>
+    </div><!-- end of credits-panel -->
+  </footer>  
 
 </body>
 </html>
