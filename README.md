@@ -2,6 +2,7 @@
 
 *Goal: Hacker Jedi app helps non-traditional software engineers get their foot in the door.  User can search community run database and create, edit, delete apprenticeships.*
 
+<!-- new heroku using Siri's https://dry-garden-46076.herokuapp.com/ -->
 [Heroku Demo](https://evening-forest-40933.herokuapp.com/)
 
 ## Technologies Used
