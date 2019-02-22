@@ -28,9 +28,12 @@
 ## Existing Features
 
 - Documented API Endpoints (`/api` describes all the available endpoints)
-- Secure login: Google OAuth
-- Search for Apprenticeship
-- 
+- User can securely login via Google OAuth
+- User can search for apprenticeship
+- User can create a new apprenticeship
+- User can edit a new apprenticeship
+- User can view only the apprenticeship that they added to Hacker-Jedi site
+- User can securely logout via Google OAuth
 
 
 ## Planned Features
@@ -41,7 +44,7 @@
 ---
 
 ##### Screenshot(s) (optional)
+<img src="https://media.giphy.com/media/2Y8IM2jz218v1IkqN3/giphy.gif" alt="search" width="70%">
 
-
-<img src="https://media.giphy.com/media/YUUk7GzJb3Yf0tzPzA/giphy.gif" width="100%">
+<img src="https://media.giphy.com/media/YUUk7GzJb3Yf0tzPzA/giphy.gif" alt="secure add page" width="70%">
 

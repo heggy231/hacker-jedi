@@ -193,10 +193,8 @@ function createApprenticeshipWithUser(apprenticeship, user, res) {
   });
 }
 
-
-
-
-  
+// learning tip: since we have :id (this variable we pass) in parameter
+//  we have to pass req.params instead of req.body
 app.put('/api/add/:id', function(req,res){
     // ^^^ get the id of the apprenticeship
     //need to also get the user id from the frontend (login)
@@ -211,19 +209,17 @@ app.put('/api/add/:id', function(req,res){
     });
   });
 
-
-
 app.delete('/api/add/:id', function (req, res) {
-    console.log('deleted apprenticeship is ', req.params);
-   db.Apprenticeship.findOneAndDelete
-    ( {_id: req.params.id}, 
-    (err, deletedApprenticeship) => {
-      if (err) {
-        console.log("the error is " + err);
-      }
-       res.json(deletedApprenticeship);
-     });
-  })
+  console.log('deleted apprenticeship is ', req.params);
+  db.Apprenticeship.findOneAndDelete
+  ( {_id: req.params.id}, 
+  (err, deletedApprenticeship) => {
+    if (err) {
+      console.log("the error is " + err);
+    }
+    res.json(deletedApprenticeship);
+  });
+})
 
 // process.env.PORT (this will be set, dynamically, by Heroku)
 app.listen(process.env.PORT || 3000, ()=> {
