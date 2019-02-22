@@ -6,14 +6,21 @@ var apprTarget;
 //JQUERY
 $(document).ready(function(){
     console.log("jquery is working");
-
-    apprTarget = $('#apprList');
+    
+    apprTarget = $('#apprList'); 
 
 const handleError = function(err) {
     console.log('error: ' + err);
 };
 
+if(localStorage.userEmail === undefined) {
+    $("#signIn").css("display", "block");
+    $("#wrapper").css("display", "none");
+}
 
+// localStorage cache has uerEmail which was passed from GoogleOAuth
+$("input[type='email']").val(localStorage.userEmail);
+//$("input[type='email']").attr("placeholder", localStorage.userEmail);
 
 //MOVED THIS TO APP.JS
 
@@ -22,26 +29,28 @@ const handleSuccess = function(json) {
     //console.log(User._id),
     console.log(json);
     for(i=0; i<apprList.length; i++) {
+        if(localStorage.userEmail === `${apprList[i].email}`) {
         //if user_created (for specific appr) === current_userID, then display the appr
         apprTarget.append(
        `<div>
-        <div class= "displayed-input">
+        <div class= "displayed-input"> 
         <li class = "company"> Company: ${apprList[i].company}, </li>
         <li class = "city"> City: ${apprList[i].city}, </li>
         <li class = "url"> URL: ${apprList[i].url}, </li>
         <li class = "description"> Description: ${apprList[i].description} </li>
-        <button class="delete" type="button" data-id=${apprList[i]._id}> Delete </button>
-        <button class="edit" type="button" data-id=${apprList[i]._id}> Edit </button>
+        <button class="delete" type="button" data-id=${apprList[i]._id}> Delete </button>  
+        <button class="edit" type="button" data-id=${apprList[i]._id}> Edit </button> 
         </div>
         <span class="edit-input" style="display: none">
-             <li> <input type="text" class="companyInput" value="${apprList[i].company}" /> </li>
-             <li> <input type="text" class="cityInput" value="${apprList[i].city}" /> </li>
-             <li> <input type="text" class="urlInput" value="${apprList[i].url}" /> </li>
-             <li> <input type="text" class="descriptionInput" value="${apprList[i].description}" /> </li>
+             <li> <input type="text" class="companyInput" value="${apprList[i].company}" /> </li> 
+             <li> <input type="text" class="cityInput" value="${apprList[i].city}" /> </li> 
+             <li> <input type="text" class="urlInput" value="${apprList[i].url}" /> </li> 
+             <li> <input type="text" class="descriptionInput" value="${apprList[i].description}" /> </li> 
               <button class="save" data-id="${apprList[i]._id}">Save</button>
         </span>
         </div> `
         )
+        }
     }
     console.log(apprTarget);
 }
@@ -60,6 +69,7 @@ const handleSuccess = function(json) {
 
 const getUserID = function(json) {
     console.log(json._id);
+    console.log(localStorage.userEmail)
 }
 
     $.ajax({
@@ -68,22 +78,32 @@ const getUserID = function(json) {
         success: getUserID,
         error: handleError
     })
-
-
+  
 
   $('#apprForm').on('submit', function(e) {
     e.preventDefault();
+    $('#submit-btn').parent().attr( "value", "TIS WERKING FINALLY!" );
+
+    let formData = $(this).serialize();
+    
+    formData.email = localStorage.userEmail;
+    console.log("watermelon");
+    console.log(formData);
+    console.log(formData += `&email=${localStorage.userEmail}`);
+
     $.ajax({
       method: 'POST',
       url: '/api/add',
-      data: $(this).serialize(),
+      data: formData,
       success: addSuccess,
       error: handleError
   });
+
+
 });
 
 
-
+  
  apprTarget.on('click', '.delete', function() {
   $(this).parent().remove();
     console.log('clicked delete button to', '/api/add/'+ $(this).attr('data-id'));
@@ -121,7 +141,7 @@ const getUserID = function(json) {
     console.log($(this).parent().find(".descriptionInput").val());
 
     $(this).parent().parent().find(".edit-input").css("display", "none");
-
+    
     $(this).parent().parent().find(".company").html('Company: ' + newCompany );
     $(this).parent().parent().find(".city").html('City ' + newCity );
     $(this).parent().parent().find(".url").html('URL: ' + newUrl );
@@ -132,7 +152,7 @@ const getUserID = function(json) {
     $.ajax({
       method: "PUT",
       url: `/api/add/${$(this).attr('data-id')}`,
-      data: {
+      data: { 
         company: newCompany,
         city: newCity,
         url: newUrl,
@@ -160,18 +180,18 @@ const getUserID = function(json) {
 function addSuccess(json) {
     $('#apprForm input').val('');
     apprList.push(json);
-
+   
     console.log(apprList);
-    console.log(json);
+    console.log(json.email);
     apprTarget.append(`
         <div>
-        <div class= "displayed-input">
+        <div class= "displayed-input"> 
         <li class = "company"> Company: ${json.company}, </li>
         <li class = "city"> City: ${json.city}, </li>
         <li class = "url"> URL: ${json.url}, </li>
         <li class = "description"> Description: ${json.description} </li>
-        <button class="delete" type="button" data-id=${json._id}> Delete </button>
-        <button class="edit" type="button" data-id=${json._id}> Edit </button>
+        <button class="delete" type="button" data-id=${json._id}> Delete </button>  
+        <button class="edit" type="button" data-id=${json._id}> Edit </button> 
         </div>
         <span class="edit-input" style="display: none">
               <li><input type="text" class = "companyInput" value="${json.company}" /></li>
@@ -181,10 +201,10 @@ function addSuccess(json) {
               <button class="save" data-id="${json._id}">Save</button>
         </span>
         </div>
-        `
+        `   
     )
     console.log(apprTarget);
   }
 
 
-
+  

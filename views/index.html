@@ -12,89 +12,223 @@
   <title>Hacker Jedi</title>
   <!-- resource: https://www.w3schools.com/bootstrap/bootstrap_get_started.asp MaxCDN provides CDN support for Bootstrap's CSS and JavaScript. You must also include jQuery: -->
   <!-- STYLESHEETS CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
   <!-- VENDOR SCRIPTS jQuery library -->
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <!-- Latest compiled JavaScript -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  <!-- APPLICATION SCRIPTS -->
-  <script src="/scripts/app.js"></script>
-
+  
+ <!-- Siri added these scripts! -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="/scripts/app.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  
 </head>
+
 <body>
-  <h1>Welcome to Hacker Jedi app</h1>
-<<<<<<< HEAD
-  <h2>Login using Google Auth</h2>
-                <a href="./profile"> go to user profile </a>
 
-=======
+  <div class="intro">
 
-  <a href="./profile"> go to user profile </a> -->
-  <!-- add create user plus  -->
+      <h1 class="hacker-jedi"> Hacker Jedi </h1>
+      
+      <div class="login-add"> 
 
-  <div>
-    <div>Do you like add a new apprenticeship?</div>
-      <a href="./createUser.html">Add +</a>
+          <a href="/add">
+              <div class="add">
+                  Add / Edit Apprenticeship
+                </div>
+          </a>
+              <div class="login">
+                <span>Login with Google:</span>   
+               <!-- Add a Google Sign-In button -->
+               <div class="g-signin2" data-onsuccess="onSignIn"></div>
+               <a href="#" onclick="signOut();">Sign out</a>
+              </div>
+      </div>
   </div>
+</header>
 
-  <h1>Login using Google Auth</h1>
-  <!-- Add a Google Sign-In button -->
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  <a href="#" onclick="signOut();">Sign out</a>
+
+
+ <div class= "container"> 
+    <div class="search-container"> 
+        <form class="search-form">
+            <input type="text" class="search" id="myInput" onkeyup="myFunction()" placeholder="Search by keyword">
+
+            <input type="text" class="city=search" id="cityInput" onkeyup="citySearch()" placeholder="Search by city">
+           <!-- <input class="search" type="text" placeholder="Search by Company, Keyword, Etc."> </input>
+
+            <input class="city-search" type="text" placeholder="City"> </input>
+            <input type="submit" value="SEARCH" class="submit-button"> </input>   -->
+        </form>
+        <div class="apprenticeship-container"> 
+       </div>
+    </div>
+
+ <script>
+
+// Search Function
+    function myFunction() {
+      var input = document.getElementById('myInput');
+      var filter = input.value.toUpperCase();
+      var ul = document.getElementsByClassName("myUL")[0];
+      var div = ul.getElementsByClassName("displayed-input");
+      //console.log(div)
+      //array of all divs that contain the appr.
+      //array div is now 16 in length.
+
+      //li = ul.getElementsByTagName('li');
+    
+      // Loop through all list items, and hide those who don't match the search query
+      for (var i = 0; i < div.length; i++) {
+        var li = div[i].getElementsByClassName("description")[0];
+       // console.log(li);
+             //a = li[i].getElementsByTagName("a")[0];
+              var txtValue = li.textContent || li.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  div[i].style.display = "";
+                  } else {
+                  div[i].style.display = "none";
+                  }
+            }
+       }
+
+
+
+
+       function citySearch() {
+      var input = document.getElementById('cityInput');
+      var filter = input.value.toUpperCase();
+      var ul = document.getElementsByClassName("myUL")[0];
+      var div = ul.getElementsByClassName("displayed-input");
+      //console.log(div)
+      //array of all divs that contain the appr.
+      //array div is now 16 in length.
+
+      //li = ul.getElementsByTagName('li');
+    
+      // Loop through all list items, and hide those who don't match the search query
+      for (var i = 0; i < div.length; i++) {
+        var li = div[i].getElementsByClassName("city")[0];
+       // console.log(li);
+             //a = li[i].getElementsByTagName("a")[0];
+              var txtValue = li.textContent || li.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  div[i].style.display = "";
+                  } else {
+                  div[i].style.display = "none";
+                  }
+            }
+       }
+ 
+
+
+
+    //this function only executes when user signs in
+    function onSignIn(googleUser) {
+
+  console.log('googleUser?: ' + googleUser);
+
+  //this stores the googleUser's basic data in an object called profile
+  let profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+   // This is null if the 'email' scope is not present.
+   // access specific variables through local storage.
+   
+   //this gets the email. property name of email is U3
+   console.log(profile.U3)
+   let userEmail = profile.U3;
+  //put ajax request here
+
+  $.ajax({
+        method: 'GET',
+        url: `/user/${userEmail}`,
+        success: 
+        function( dbUser ) {
+          if (dbUser === null){
+            //ajax post create user
+            $.ajax({
+              method: 'POST',
+              url: '/user',
+              data: {
+                name: profile.getName(),
+                email: userEmail
+              },
+              success: function(dbuser){
+                //store in local storage if you
+                //successfully got a response (posted) to your db
+                //if you don't do this dbUser wont be available across all pages
+                localStorage.userEmail = dbuser.email;
+                console.log("HERe is IZ:" + dbuser.email);
+                // redirects user to the add page
+                location.href = "add";
+              },
+              error: function(err){
+                console.log(err)
+              }
+            })
+          }
+          localStorage.userEmail = dbUser.email;
+          console.log("HERe is IZ:" + dbUser.email);
+          console.log('db user',dbUser);
+        },
+        error: function() {
+          alert('There was an error');
+        }
+    })
+}
+  </script>
+
+  <!-- <a href="" id ="signOut">Sign out</a> -->
   <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
-
-  <footer>
-    <p>&copy; 2019 Siri, Chike, Heggy</p>
-
-    <p>
-      ## Credits
-    </p>
-    <!-- <ul id="credits">
-      <li><a href="https://github.com/fvcproductions">FVCproductions</a></li>
-      <li><a href="https://modayil.me">Benjamin Modayil</a></li>
-      <li><a href="https://linkedin.com/in/leilanir">Leilani Raranga</a></li>
-      <li><a href="https://www.coltonhurst.com">Colton Hurst</a></li>
-      <li><a href="https://github.com/jschultz21">Julia Schultz</a></li>
-      <li><a href="https://github.com/ibrittanyhill">Brittany Hill</a></li>
-      <li><a href="https://www.linkedin.com/in/chris-miller-6470751/">Chris Miller</a></li>
-      <li><a href="https://github.com/markarce">Mark Arce</a></li>
-      <li><a href="https://github.com/amyyf">Amy Frieson</a></li>
-    </ul> -->
-  </footer>
-  <script>
-      // Get profile information
-      // After you have signed in a user with Google using the default scopes, you can access the user's Google ID, name, profile URL, and email address.
-      function onSignIn(googleUser) {
-        debugger;
-        console.log('googleUser?: ' + googleUser);
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      }
-
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
-    </script>
->>>>>>> b465cd62454c8fafd446c3d7737f477479504f2f
-
-
-<a href="./profile"> go to user profile </a>
+  
 <div>
-  <ul id="apprList">
-
+  <ul id="apprList" class="myUL">
+        
+      
   </ul>
-</div>
+</div>      
 
+<script>
+  //script won't work when in app.js, but will work here.... hmmmm.... suspicious....
+  function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    localStorage.removeItem('userEmail')
+    console.log('User signed out.');
+  });
+}
+</script>
+
+<script> 
+  $(document).ready(function(){
+    $("#credits").click(function(){
+      $("#credits-panel").slideToggle("slow");
+    });
+  });
+</script>
+
+<footer>
+  <!--   jquery panel slide toggle for credits  -->
+    <div id="credits"><p> &copy; 2019 Siri, Chike, Heggy | Click to see credits<p></div>
+    <div id="credits-panel">
+      <ul>
+        <li><a href="https://github.com/fvcproductions">FVCproductions</a></li>
+        <li><a href="https://modayil.me">Benjamin Modayil</a></li>
+        <li><a href="https://linkedin.com/in/leilanir">Leilani Raranga</a></li>
+        <li><a href="https://www.coltonhurst.com">Colton Hurst</a></li>
+        <li><a href="https://github.com/jschultz21">Julia Schultz</a></li>
+        <li><a href="https://github.com/ibrittanyhill">Brittany Hill</a></li>
+        <li><a href="https://www.linkedin.com/in/chris-miller-6470751/">Chris Miller</a></li>
+        <li><a href="https://github.com/markarce">Mark Arce</a></li>
+        <li><a href="https://github.com/amyyf">Amy Frieson</a></li>
+      </ul>
+    </div><!-- end of credits-panel -->
+  </footer>  
 
 </body>
 </html>

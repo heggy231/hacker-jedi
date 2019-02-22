@@ -10,14 +10,36 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- VENDOR SCRIPTS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-
     <script src="/scripts/add.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/styles/add.css">
 </head>
 <body>
-    <h1>form here!</h1>
-    <h2> add a new apprenticeship. </h2>
-    give it a try!
-     <div class="form-container">
+  
+
+    <header> 
+        <div class="intro">
+    
+            <h1 class="hacker-jedi"> Hacker Jedi </h1>
+            
+            
+                <a href="/"> To Homepage </a>
+            </div>
+      
+        </div>
+        
+      </header>
+
+
+
+
+
+
+
+
+    <h2 id="signIn" style="display:none;"> Please return to the <a href="/">homepage</a> and sign in to continue! </h2>
+
+    <div id="wrapper" style="display:block;">
           <form class="form-inline" id="apprForm" method="POST" action = "http://localhost:3000/api/add">
             <div class="form-group">
               <input type="text" name="company" class="form-control" placeholder="Company" autofocus>
@@ -32,14 +54,16 @@
               <input type="text" name="description" class="form-control" placeholder="description">
             </div>
             <div class="form-group">
-              <input type="submit" class="btn btn-default" value="Add Apprenticeship">
+                <button type="submit" id="submit-btn" class="btn btn-default">Add Apprenticeship</button>
+               <!-- <label><input type="submit" id="submit-btn" class="btn btn-default" value="add apprenticeship">Add Apprenticeship</label>  -->
             </div>
           </form>
-     </div>
+    
     <div>
       <ul id="apprList">
         
       </ul>
     </div>
+  </div>
 </body>
 </html>

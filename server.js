@@ -18,7 +18,6 @@ app.use(function(req, res, next) {
 /************
  * DATABASE *
  ************/
-
 const db = require('./models');
 
 /**********
@@ -43,9 +42,9 @@ app.get('/add', function addPage(req, res) {
     res.sendFile(__dirname + '/views/add.html');
   });
 
-  app.get('/profile', function addPage(req, res) {
-    res.sendFile(__dirname + '/views/profile.html');
-  });
+app.get('/profile', function addPage(req, res) {
+  res.sendFile(__dirname + '/views/profile.html');
+});
 
 
 /*
@@ -54,7 +53,6 @@ app.get('/add', function addPage(req, res) {
 
 app.get('/api', (req, res) => {
   // all api endpoints are in the json object below
-
   res.json({
     appTitle: "HackerJedi!",
     appContributors: "Chike, Siri, and Heggy",
@@ -62,19 +60,35 @@ app.get('/api', (req, res) => {
     GitHubLink: "CHANGE THIS", // CHANGE ME
     HerokuLink: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
+      //2 pages for 
+      {method: "GET", path: "/", description: "User lands and starts searching for apprenticeship."},
+      {method: "GET", path: "/add", description: "User adds new apprenticeship."},
+      //server side
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/profile", despcription: "View your user profile here" },
-      {method: "GET", path: "/api/add", despcription: "Add a new opportunity here. View, edit, & delete the one's you've added" },
-      {method: "POST", path: "/api/add", description: "Create new apprenticeship/opportunity"},
-      {method: "PUT", path: "/api/add/:id", description: "Edit an apprenticeship and update it"},
-      {method: "DELETE", path: "/api/add/:id", description: "Delete an apprenticeship that's no longer available/relevant"},
-      {method: "GET", path: "/api/opportunities", despcription: "View all opportunities for breaking into tech here!"}
+      {method: "GET", path: "/api/apprenticeships", description: "View all apprenticeships here." },
+      {method: "GET", path: "api/apprenticeships/:keyword", description: "Search keyword"},
+      {method: "POST", path: "/api/apprenticeships", description: "Create new apprenticeship/opportunity, post it to this api"},
+      {method: "PUT", path: "/api/apprenticeships/:id", description: "Edit an apprenticeship and update it"},
+      {method: "DELETE", path: "/api/apprenticeships/:id", description: "Delete an apprenticeship that's no longer available/relevant"},
       //for later: search through opportunities
       //maybe we can add algolia.com's search bar plugin
       //or create our own search queries.
     ]
   })
 });
+
+ //THIS CODE REMOVES ALL USERS
+  app.delete('/user', function (req, res) {
+  console.log('deleted all users');
+ db.User.collection.remove()
+})
+
+ //THIS CODE REMOVES ALL USERS
+  app.delete('/api/add', function (req, res) {
+  console.log('deleted all appr');
+ db.Apprenticeship.collection.remove()
+})
+
 
 app.get('/user', (req, res) => {
     db.User.find({}, function (err, user) {
@@ -90,7 +104,7 @@ app.get('/user', (req, res) => {
 app.delete('/user/:id', function (req, res) {
     console.log('deleted user ID is ', req.params);
    db.User.findOneAndDelete
-    ( {_id: req.params.id},
+    ( {_id: req.params.id}, 
     (err, deletedUser) => {
       if (err) {
         console.log("the error is " + err);
@@ -98,10 +112,6 @@ app.delete('/user/:id', function (req, res) {
        res.json(deletedUser);
      });
   })
-
-
-
-
 
 app.get('/api/add', (req, res) => {
     db.Apprenticeship.find({}, function (err, apprenticeship) {
@@ -113,151 +123,78 @@ app.get('/api/add', (req, res) => {
 })
 
 
-// app.post('/api/add', (req, res) => {
-//     db.Apprenticeship(req.body).save(function(err, apprenticeship){
-//           if (err) {
-//             console.log("error: " + err);
-//           }
-//           console.log("created " + apprenticeship);
-//           res.json(apprenticeship);
-//         });
-//   })
+app.post('/user', (req, res) => {
+  let newUser = req.body
+  db.User.create(newUser,(err,createdUser)=>{
+    if (err){
+      res.send(err)
+    }
+    res.json(createdUser)
+  })
+});
 
-
-//   app.post('/profile/add', (req, res) => {
-//     //create new selfcare item
-//     let user = new db.User({
-//       //this gets from the form on index.html ... how to get from a form on another page?
-//       firstName: req.body.firstName,
-//       city: req.body.city,
-//       url: req.body.url,
-//       description: req.body.description,
-//    //userCreated?
-//     });
-//       newAppr.save(function(err, apprenticeship){
-//           if (err) {
-//             console.log("error: " + err);
-//           }
-//           console.log("created " + newAppr);
-//           res.json(newAppr);
-//         });
-//   })
-
-
-
-//     let  = {
-//       name: req.body.name,
-//       email: req.body.email,
-//       user_created: ''
-//     }
-
-
-
-
-//Chike's
-
-// app.post('/api/add', (req, res ) => {
-
-//      let newUser = new db.User({
-//           //this gets from the form on index.html ... how to get from a form on another page?
-//           firstName: req.body.firstName,
-//           lastName: req.body.lastName,
-//            email: req.body.email,
-//           company: req.body.company,
-//        //userCreated?
-//         });
-
-//     User.create(newUser, (err, userCreated)=> {
-//       if (err) {
-//         return console.log(err);
-//       }
-
-//      userCreated.save((err, newUser)=>{
-
-//         if (err){
-
-//           return console.log(err);
-
-//          }
-
-//         let apprenticeship = {
-//           company: req.body.company,
-//           url: req.body.url,
-//           description: req.body.description,
-//           city: req.body.city
-//          }
-
-//         apprenticeship['user_created'] = userCreated._id;
-
-//         Apprenticeship.create(apprenticeship, (err, newAppr) => {
-
-//           newAppr.save((err)=>{
-
-//             if (err) {
-
-//                return console.log(err);
-
-//             } else {
-//               res.json(newAppr);
-//             }
-//           });
-//         });
-//      });
-//     });
-//   });
+app.get('/user/:email', (req, res) => {
+  let email = req.params.email
+  db.User.findOne({email: email})
+    .exec((err,foundUser)=>{
+      if (err){
+        res.send(err)
+      }
+      res.json(foundUser)
+    })
+});
 
 
 //Heggy's
 // Creat new apprenticeship
 app.post('/api/add', (req, res) => {
     // create new apprenticeship with form data ('req.body')
-    console.log("body is ", req.body);
-    let newApprenticeship = new db.Apprenticeship({
-      company: req.body.company,
-      city: req.body.city,
-      url: req.body.url,
-      description: req.body.description,
-      user_created: null,
-    });
-    // find the user from req.body
-    db.User.findOne({email: req.body.email}, (err, user) => {
-      if (err) {
-        return console.log(err);
-      }
-      // if that user doesn't exist yet, create a new one
-      if (user === null) {
-        db.User.create({name: req.body.user, email: req.body.email}, (err, newUser) => {
-          if (err) {
-            return console.log(err);
-          }
-          createApprenticeshipWithUser(newApprenticeship, newUser, res);
-        });
-      } else {
-        createApprenticeshipWithUser(newApprenticeship, user, res);
-      }
-    });
-    // save new Apprentice
+  console.log("body is ", req.body);
+  let newApprenticeship = new db.Apprenticeship({
+    company: req.body.company,
+    city: req.body.city,
+    url: req.body.url,
+    description: req.body.description,
+    email: req.body.email,
+    user_created: null,
   });
+  // find the user from req.body
+  db.User.findOne({email: req.body.email}, (err, user) => {
+    if (err) {
+      return console.log(err);
+    }
+    // if that user doesn't exist yet, create a new one
+    if (user === null) {
+      db.User.create({name: req.body.user, email: req.body.email}, (err, newUser) => {
+        if (err) {
+          return console.log(err);
+        }
+        createApprenticeshipWithUser(newApprenticeship, newUser, res);
+      });
+    } else {
+      createApprenticeshipWithUser(newApprenticeship, user, res);
+    }
+  }); 
+  // save new Apprentice
+}); 
+  
+// create Apprenticeship With new User function
+function createApprenticeshipWithUser(apprenticeship, user, res) {
+  // add this user to the apprenticeship
+  apprenticeship.user_created = user;
+  // save new apprenticeship to database
+  apprenticeship.save(function(err, book) {
+    if (err) { 
+      return console.log("save error: " + err)
+    }
+    console.log("saved ", apprenticeship.company);
+    // send back the apprenticeship
+    res.json(apprenticeship);
+  });
+}
 
-  // create Apprenticeship With new User function
-  function createApprenticeshipWithUser(apprenticeship, user, res) {
-    // add this user to the apprenticeship
-    apprenticeship.user_created = user;
-    // save new apprenticeship to database
-    apprenticeship.save(function(err, book) {
-      if (err) {
-        return console.log("save error: " + err)
-      }
-      console.log("saved ", apprenticeship.company);
-      // send back the apprenticeship
-      res.json(apprenticeship);
-    });
-  }
-
-
-
-
-
+// learning tip: since we have :id (this variable we pass) in parameter
+//  we have to pass req.params instead of req.body
 app.put('/api/add/:id', function(req,res){
     // ^^^ get the id of the apprenticeship
     //need to also get the user id from the frontend (login)
@@ -268,56 +205,23 @@ app.put('/api/add/:id', function(req,res){
       if (err) {
         console.log("the error is " + err);
       }
-    //    apprenticeship.user_created.email = req.body.email;
-    //    apprenticeship.company = requ.body.company;
-    //    apprenticeship.url = requ.body.url;
-    //    apprenticeship.city = req.body.city;
-    //    apprenticeship.description = req.body.description;
       res.json(apprenticeship);
     });
   });
 
-
-
-
-//   app.put('/api/add/:id', function(req,res){
-//     console.log('updated apprenticeships: ', req.params);
-
-//     db.Apprenticeship.findOneAndUpdate({ _id: req.params.id})
-
-//     .populate('user_created')
-
-//     .exec(err, apprenticeship) => {
-//         if (err) {
-//             console.log("the error is " + err);
-//           }
-//        apprenticeship.user_created.email = req.body.email;
-//        apprenticeship.company = requ.body.company;
-//        apprenticeship.url = requ.body.url;
-//        apprenticeship.city = req.body.city;
-//        apprenticeship.description = req.body.description;
-
-//        res.json(apprenticeship);
-//     }
-//   });
-
-
-
 app.delete('/api/add/:id', function (req, res) {
-    console.log('deleted apprenticeship is ', req.params);
-   db.Apprenticeship.findOneAndDelete
-    ( {_id: req.params.id},
-    (err, deletedApprenticeship) => {
-      if (err) {
-        console.log("the error is " + err);
-      }
-       res.json(deletedApprenticeship);
-     });
-  })
+  console.log('deleted apprenticeship is ', req.params);
+  db.Apprenticeship.findOneAndDelete
+  ( {_id: req.params.id}, 
+  (err, deletedApprenticeship) => {
+    if (err) {
+      console.log("the error is " + err);
+    }
+    res.json(deletedApprenticeship);
+  });
+})
 
-
-
-
+// process.env.PORT (this will be set, dynamically, by Heroku)
 app.listen(process.env.PORT || 3000, ()=> {
   console.log('listening on port 3000');
 });
