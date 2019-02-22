@@ -48,10 +48,10 @@ const handleSuccess = function(json) {
           
         `
         <div class= "displayed-input"> 
-        <li class = "company">  Company: ${apprList[i].company},  </li>
-        <li class = "city">  City: ${apprList[i].city},  </li>
-        <li class = "url">  URL: ${apprList[i].url},  </li>
-        <li class = "description">  Description: ${apprList[i].description}  </li>
+        <li class = "company listItem">  Company: ${apprList[i].company},  </li>
+        <li class = "city listItem">  City: ${apprList[i].city},  </li>
+        <li class = "url listItem">  URL: ${apprList[i].url},  </li>
+        <li class = "description listItem">  Description: ${apprList[i].description}  </li>
         </div>
         <br>
         `

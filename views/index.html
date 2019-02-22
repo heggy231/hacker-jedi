@@ -76,19 +76,25 @@
 
 
  <script>
+
     function myFunction() {
 
       var input = document.getElementById('myInput');
       var filter = input.value.toUpperCase();
       var ul = document.getElementsByClassName("myUL")[0];
+
+
       var div = ul.getElementsByClassName("displayed-input");
+      //console.log(div)
+      //array of all divs that contain the appr.
+      //array div is now 16 in length.
 
       //li = ul.getElementsByTagName('li');
     
       // Loop through all list items, and hide those who don't match the search query
       for (var i = 0; i < div.length; i++) {
-        var li = div[i].getElementsByTagName(li)[0];
-        console.log(li);
+        var li = div[i].getElementsByClassName("listItem")[0];
+       // console.log(li);
              //a = li[i].getElementsByTagName("a")[0];
               var txtValue = li.textContent || li.innerText;
               if (txtValue.toUpperCase().indexOf(filter) > -1) {
