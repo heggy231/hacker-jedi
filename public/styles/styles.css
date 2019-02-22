@@ -212,3 +212,25 @@ p {
     margin-right: 5em;
     
 }
+
+/* ########### credits footer ########### */
+#credits-panel, #credits {
+	padding: 5px;
+	text-align: center;
+	background-color: #f5f5dc; /* beige */
+	border: solid 1px #c3c3c3;
+}
+
+#credits-panel {
+	padding: 50px;
+	display: none;
+}
+
+#credits-panel ul {
+	list-style: none;
+}
+
+#credits-panel ul a {
+	text-decoration: none;
+	color: brown;
+}
