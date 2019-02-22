@@ -26,23 +26,72 @@
   
 </head>
 
-
 <body>
-  <h1>Welcome to Hacker Jedi app</h1>
-  
-  <a href="./profile"> go to user profile </a> -->
-  <!-- add create user plus  -->
 
-  <div>
-    <div>Do you like add a new apprenticeship?</div>
-      <a href="./createUser.html">Add +</a>
+  <div class="intro">
+
+      <h1 class="hacker-jedi"> Hacker Jedi </h1>
+      
+      <div class="login-add"> 
+
+          <a href="/add">
+              <div class="add">
+                  Add / Edit Apprenticeship
+                </div>
+          </a>
+              <div class="login">
+                <span>Login with Google:</span>   
+               <!-- Add a Google Sign-In button -->
+               <div class="g-signin2" data-onsuccess="onSignIn"></div>
+               <a href="#" onclick="signOut();">Sign out</a>
+              </div>
+      </div>
   </div>
+</header>
 
-  <h1>Login using Google Auth</h1>
-  <!-- Add a Google Sign-In button -->
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-  <script>
+
+ <div class= "container"> 
+
+
+
+ <div class="search-container"> 
+  <form class="search-form">
+      <input class="search" type="text" placeholder="Search by Company, Keyword, Etc."> </input>
+
+      <input class="city-search" type="text" placeholder="City"> </input>
+      <input type="submit" value="SEARCH" class="submit-button"> </input>  
+  </form>
+  <div class="apprenticeship-container"> 
+    
+
+   </div>
+ </div>
+
+
+ <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById('myInput');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("myUL");
+      li = ul.getElementsByTagName('li');
+    
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+    
+
+
 
     //this function only executes when user signs in
     function onSignIn(googleUser) {
@@ -83,6 +132,8 @@
                 //if you don't do this dbUser wont be available across all pages
                 localStorage.userEmail = dbuser.email;
                 console.log("HERe is IZ:" + dbuser.email);
+                // redirects user to the add page
+                location.href = "add";
               },
               error: function(err){
                 console.log(err)
@@ -100,21 +151,9 @@
 }
   </script>
 
-  <a href="#" onclick="signOut();">Sign out</a>
   <!-- <a href="" id ="signOut">Sign out</a> -->
   <!-- to get to the id: googleUser.getBasicProfile().getId(); -->
   
-  <footer>
-    <p>&copy; 2019 Siri, Chike, Heggy</p>
-
-    <p>
-      ## Credits
-    </p>
-  </footer>
-
-<button id="gmailUserSubmit">Submit</button>
-
-<a href="./profile"> go to user profile </a>
 <div>
   <ul id="apprList">
       
@@ -130,8 +169,15 @@
     console.log('User signed out.');
   });
 }
+
+
 </script>
 
+
+
+<footer>
+    <p>&copy; 2019 Siri, Chike, Heggy</p>
+  </footer>
 
 </body>
 </html>

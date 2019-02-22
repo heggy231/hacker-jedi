@@ -1,6 +1,3 @@
-body {
-
-}
 header {
   display: flex;
   margin-bottom: 40px;
@@ -9,12 +6,14 @@ header {
 h1 {
   padding-left: 20px;
   margin-bottom: 20px;
-  color: purple;
-}
-
-li {
+  margin-top: 20px;
 
 }
+
+.login a, .login span {
+    color: #FF4C3B;
+}
+
 
 a {
     text-decoration: none !important;
@@ -29,12 +28,16 @@ label, .dinput {
   font-family: 'Philosopher', sans-serif;
 }
 
-.add, .login {
+.add {
   color: #FF4C3B;
+  margin-right: 3em;
+  margin-top: 7%;
 }
 
 .login {
-    margin-left: 20px
+    color: #4285F4;
+    margin-left: 20px;
+    display: inline-block;
 }
 
 .intro{
@@ -105,14 +108,15 @@ input {
   margin-top: 30px;
 }
 
-.city, .contact {
+.city {
   display: inline-block;
   font-family: 'Karla', sans-serif;  
   font-weight: bold;
   color: #666666;
 }
 
-.apprenticeship-name {
+.apprenticeship-name, .contact  {
+    display: inline-block;
     font-size: 18px;
     font-weight: bold;
     color: #FF4C3B;
@@ -168,14 +172,6 @@ p {
   margin-left: 151px;
 }
 
-.form-container {
-    display: flex;
-    justify-content: space-around;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 12%;
-}
-
 .tower1 {
     display: flex;
     flex-direction: column;
@@ -209,4 +205,10 @@ p {
 
 .dinput {
     font-weight: bold;
+}
+
+.g-signin2 {
+    display: inline-block;
+    margin-right: 5em;
+    
 }
