@@ -43,6 +43,8 @@
 
 - Put reminder to apply on ADD to google calendar|iCal button
 - Add apprenticeship durations
+- Search using MongoDB $regex <img src="https://cdn.glitch.com/cb093bfd-142f-45b3-bdb4-52ff49e0a1c2%2FScreen%20Shot%202019-02-22%20at%2012.10.16%20PM.png?1550866430398" alt="regex" width="70%">
+
 
 ---
 
