@@ -3,6 +3,11 @@ header {
   margin-bottom: 40px;
 }
 
+li {
+    list-style: none;
+
+}
+
 h1 {
   padding-left: 20px;
   margin-bottom: 20px;
@@ -194,7 +199,7 @@ p {
 
 .description {
     height: 100px;
-    transform:translate(25%,0%);
+    /* transform:translate(25%,0%); */
     margin: 0px;
 }
 

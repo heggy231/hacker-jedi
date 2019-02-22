@@ -54,7 +54,9 @@
  <div class= "container"> 
     <div class="search-container"> 
         <form class="search-form">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+            <input type="text" class="search" id="myInput" onkeyup="myFunction()" placeholder="Search by keyword">
+
+            <input type="text" class="city=search" id="cityInput" onkeyup="citySearch()" placeholder="Search by city">
            <!-- <input class="search" type="text" placeholder="Search by Company, Keyword, Etc."> </input>
 
             <input class="city-search" type="text" placeholder="City"> </input>
@@ -80,7 +82,35 @@
     
       // Loop through all list items, and hide those who don't match the search query
       for (var i = 0; i < div.length; i++) {
-        var li = div[i].getElementsByClassName("listItem")[0];
+        var li = div[i].getElementsByClassName("description")[0];
+       // console.log(li);
+             //a = li[i].getElementsByTagName("a")[0];
+              var txtValue = li.textContent || li.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  div[i].style.display = "";
+                  } else {
+                  div[i].style.display = "none";
+                  }
+            }
+       }
+
+
+
+
+       function citySearch() {
+      var input = document.getElementById('cityInput');
+      var filter = input.value.toUpperCase();
+      var ul = document.getElementsByClassName("myUL")[0];
+      var div = ul.getElementsByClassName("displayed-input");
+      //console.log(div)
+      //array of all divs that contain the appr.
+      //array div is now 16 in length.
+
+      //li = ul.getElementsByTagName('li');
+    
+      // Loop through all list items, and hide those who don't match the search query
+      for (var i = 0; i < div.length; i++) {
+        var li = div[i].getElementsByClassName("city")[0];
        // console.log(li);
              //a = li[i].getElementsByTagName("a")[0];
               var txtValue = li.textContent || li.innerText;
@@ -92,14 +122,6 @@
             }
        }
  
-    function search () {
-      var str = "Visit W3Schools!"; 
-      var indexNumMatch = str.search("W3Schools");
-      if(indexNumMatch > -1){
-        console.log(str);
-      }
-    }
-
 
 
 
