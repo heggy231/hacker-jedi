@@ -82,6 +82,7 @@ const getUserID = function(json) {
 
   $('#apprForm').on('submit', function(e) {
     e.preventDefault();
+    $('#submit-btn').parent().attr( "value", "TIS WERKING FINALLY!" );
 
     let formData = $(this).serialize();
     
@@ -97,6 +98,8 @@ const getUserID = function(json) {
       success: addSuccess,
       error: handleError
   });
+
+
 });
 
 

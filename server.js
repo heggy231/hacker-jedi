@@ -76,6 +76,17 @@ app.get('/api', (req, res) => {
   })
 });
 
+ //THIS CODE REMOVES ALL USERS
+  app.delete('/user', function (req, res) {
+  console.log('deleted all users');
+ db.User.collection.remove()
+})
+
+ //THIS CODE REMOVES ALL USERS
+  app.delete('/api/add', function (req, res) {
+  console.log('deleted all appr');
+ db.Apprenticeship.collection.remove()
+})
 
 
 app.get('/user', (req, res) => {

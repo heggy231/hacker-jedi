@@ -22,17 +22,39 @@ const handleSuccess = function(json) {
     apprList = json;
     console.log(json);
     for(i=0; i<apprList.length; i++) {
-        apprTarget.append(`
-        <div>
-        <div class= "displayed-input"> 
-        <li class = "company"> Company: ${apprList[i].company}, </li>
-        <li class = "city"> City: ${apprList[i].city}, </li>
-        <li class = "url"> URL: ${apprList[i].url}, </li>
-        <li class = "description"> Description: ${apprList[i].description} </li>
-        </div>
-        </div>
-        <br>
-        `
+        apprTarget.append(
+
+          `<div class="apprenticeship">
+                                <div class="first-row">
+                                    <div class="apprenticeship-name"> ${apprList[i].company} <br> 
+                                    
+                                </div>
+                                </div>
+                                <div class="second-row">
+                                    <div class="app_email"> ${apprList[i].url}</div>
+                                    <div class="city-contact">
+                                    <p class="city"> ${apprList[i].city} </p>
+                                </div>
+                                </div>
+                                <div class="third-row">
+                                    <p> 
+                                    ${apprList[i].description}
+                                    </p>
+                                </div>
+                            </div>`
+          
+        //   `
+        // <div>
+        // <div class= "displayed-input"> 
+        // <li class = "company"> Company: ${apprList[i].company}, </li>
+        // <li class = "city"> City: ${apprList[i].city}, </li>
+        // <li class = "url"> URL: ${apprList[i].url}, </li>
+        // <li class = "description"> Description: ${apprList[i].description} </li>
+        // </div>
+        // </div>
+        // <br>
+        // `
+        
         )}
     console.log(apprTarget);
 }
