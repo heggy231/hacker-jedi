@@ -18,7 +18,7 @@ if(localStorage.userEmail === undefined) {
     $("#wrapper").css("display", "none");
 }
 
-
+// localStorage cache has uerEmail which was passed from GoogleOAuth
 $("input[type='email']").val(localStorage.userEmail);
 //$("input[type='email']").attr("placeholder", localStorage.userEmail);
 
