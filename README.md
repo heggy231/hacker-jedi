@@ -45,8 +45,10 @@
 - Add apprenticeship durations
 - Search using MongoDB $regex 
 <img src="https://cdn.glitch.com/cb093bfd-142f-45b3-bdb4-52ff49e0a1c2%2FScreen%20Shot%202019-02-22%20at%2012.10.16%20PM.png?1550866430398" alt="regex" width="70%">
+- Create a restful api routes and examples like giphy documentation:[Giphy search documentation](https://developers.giphy.com/docs/)
 
-
+- UI: show card like box for each apprenticeships
+- Move logic JavaScript to Script folder
 ---
 
 
