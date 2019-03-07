@@ -46,8 +46,9 @@
 - Search using MongoDB $regex 
 <img src="https://cdn.glitch.com/cb093bfd-142f-45b3-bdb4-52ff49e0a1c2%2FScreen%20Shot%202019-02-22%20at%2012.10.16%20PM.png?1550866430398" alt="regex" width="70%">
 - Create a restful api routes and examples like giphy documentation:[Giphy search documentation](https://developers.giphy.com/docs/)
-- [Hacker Jedi Endpoint](https://dry-garden-46076.herokuapp.com/api/add)  
-<details><summary>click for all hacker jedi data you could use</summary>
+
+  - [Hacker Jedi Endpoint](https://dry-garden-46076.herokuapp.com/api/add)  
+  <details><summary>click for all hacker jedi data you could use</summary>
 
 ```js
 // 20190307103907
